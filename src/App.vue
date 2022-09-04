@@ -1,30 +1,43 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <router-view></router-view>
 </template>
 
+<script>
+export default {
+  name: "App",
+};
+</script>
+
 <style lang="scss">
+// Font Imports
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  color: $color-font-main;
 }
 
-nav {
-  padding: 30px;
+html {
+  font-size: 62.5%;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+h1 {
+  font-size: 4rem;
+  font-weight: 500;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(
+    0.25turn,
+    $color-bg-gradient-start,
+    $color-bg-gradient-end
+  );
 }
 </style>
