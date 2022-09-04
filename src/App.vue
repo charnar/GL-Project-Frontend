@@ -1,10 +1,25 @@
 <template>
-  <router-view></router-view>
+  <router-view
+    @toggle-form="toggleForm"
+    :showRegisterForm="showRegisterForm"
+  ></router-view>
 </template>
 
 <script>
 export default {
   name: "App",
+
+  data() {
+    return {
+      showRegisterForm: false,
+    };
+  },
+
+  methods: {
+    toggleForm() {
+      this.showRegisterForm = !this.showRegisterForm;
+    },
+  },
 };
 </script>
 
@@ -31,6 +46,8 @@ h1 {
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  border: none;
 }
 
 body {

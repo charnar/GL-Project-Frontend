@@ -1,14 +1,14 @@
 <template>
   <form @submit="onSubmit" class="login-form">
-    <span class="input">
+    <span class="gradient__box">
       <input type="text" id="account" placeholder="Username/Email" />
     </span>
 
-    <span class="input">
+    <span class="gradient__box">
       <input type="password" id="password" placeholder="Password" />
     </span>
 
-    <!-- <button type="submit">Submit</button> -->
+    <input type="submit" value="Log In" />
   </form>
 </template>
 
@@ -26,44 +26,70 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-input,
-button {
-  font-size: 2rem;
-  z-index: 100;
+form {
+  margin-top: 4rem;
+  width: 70%;
+  max-width: 450px;
 }
-
 input {
-  background: none;
-  border: none;
-  color: white;
+  font-size: 2rem;
+  z-index: 1;
 }
 
-input::placeholder {
-  color: $color-text-placeholder;
-  font-weight: thin;
+$inputs: text, password;
+
+@each $input in $inputs {
+  [type="#{$input}"] {
+    background: none;
+    color: $color-font-main;
+
+    &:focus {
+      outline: none;
+      color: $color-font-main;
+    }
+
+    &::before {
+    }
+
+    &::placeholder {
+      color: $color-font-secondary;
+      font-weight: thin;
+    }
+  }
 }
 
-input:focus {
-  outline: none;
+input[type="submit"] {
+  margin-top: 8rem;
+  display: block;
+  width: 100%;
+  padding: 15px 20px;
+  cursor: pointer;
   color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  background: linear-gradient(
+    0.25turn,
+    $color-button-gradient-start,
+    $color-button-gradient-end
+  );
 }
-.input {
+
+.gradient__box {
   position: relative;
   padding: 15px 20px;
-  font-size: 2rem;
   display: block;
-  margin: 2rem 0;
+  margin: 1.6rem 0;
 }
 
-.input::before {
+.gradient__box::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  border-radius: 10px;
-  border: 3px solid transparent;
+  border-radius: 8px;
+  border: 2px solid transparent;
   background: linear-gradient(
       0.25turn,
       $color-button-gradient-start,
@@ -74,8 +100,5 @@ input:focus {
   -webkit-mask-composite: destination-out;
   mask-composite: exclude;
   z-index: -1;
-}
-
-button {
 }
 </style>
