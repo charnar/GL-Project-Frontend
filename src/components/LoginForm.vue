@@ -1,5 +1,5 @@
 <template>
-  <form @submit="onSubmit" class="login-form">
+  <form ref="loginForm" @submit="onSubmit" class="login__form">
     <span class="gradient__box">
       <input type="text" id="account" placeholder="Username/Email" />
     </span>
@@ -15,11 +15,16 @@
 <script>
 export default {
   name: "LoginForm",
-
   methods: {
+    // triggers when the form is submitted
     onSubmit(e) {
       e.preventDefault();
       console.log("Pressed log in");
+    },
+
+    // resets the inputs on the HTML Form
+    resetForm() {
+      this.$refs.loginForm.reset();
     },
   },
 };
@@ -31,7 +36,9 @@ form {
   width: 70%;
   max-width: 450px;
 }
+
 input {
+  width: 100%;
   font-size: 2rem;
   z-index: 1;
 }

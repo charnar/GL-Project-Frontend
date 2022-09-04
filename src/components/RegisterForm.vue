@@ -1,5 +1,5 @@
 <template>
-  <form @submit="onSubmit" class="login-form">
+  <form ref="registerForm" @submit="onSubmit" class="register-form">
     <span class="gradient__box">
       <input type="text" id="username" placeholder="Username" />
     </span>
@@ -21,9 +21,15 @@ export default {
   name: "RegisterForm",
 
   methods: {
+    // triggers when the form is submitted
     onSubmit(e) {
       e.preventDefault();
       console.log("Pressed log in");
+    },
+
+    // resets the inputs on the HTML Form
+    resetForm() {
+      this.$refs.registerForm.reset();
     },
   },
 };
