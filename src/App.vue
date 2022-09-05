@@ -31,7 +31,7 @@ export default {
   font-family: Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: $color-font-main;
+  color: color.$font-main;
 }
 
 html {
@@ -51,10 +51,10 @@ h1 {
 }
 
 body {
-  background: linear-gradient(
+  @include mixin.gradient-bg(
     0.25turn,
-    $color-bg-gradient-start,
-    $color-bg-gradient-end
+    color.$bg-gradient-start,
+    color.$bg-gradient-end
   );
 }
 </style>

@@ -1,0 +1,17 @@
+// Mixins
+
+// Gradient Background Property
+@mixin gradient-bg($direction, $color1, $color2, $border: false) {
+  // For gradient borders (Input fields and etc)
+  @if $border {
+    background: linear-gradient($direction, $color1, $color2) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    z-index: -1;
+    // Regular gradient background (for Buttons, Background, etc)
+  } @else {
+    background: linear-gradient($direction, $color1, $color2);
+  }
+}

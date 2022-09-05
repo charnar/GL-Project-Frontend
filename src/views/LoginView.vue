@@ -52,16 +52,16 @@ export default {
   font-size: 1.6rem;
 
   p {
-    color: $color-font-secondary;
+    color: color.$font-secondary;
     font-weight: 500;
 
     a {
       margin-left: 5px;
-      color: $color-font-tertiary;
+      color: color.$font-tertiary;
       text-decoration: none;
 
       &:hover {
-        border-bottom: 1px solid $color-font-tertiary;
+        border-bottom: 1px solid color.$font-tertiary;
       }
     }
   }

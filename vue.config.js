@@ -4,7 +4,8 @@ module.exports = defineConfig({
   css: {
     loaderOptions: {
       sass: {
-        additionalData: `@import "@/assets/sass/_variables.scss";`,
+        additionalData: `@use "@/assets/sass/color"; 
+        @use "@/assets/sass/mixin";`,
       },
     },
   },
