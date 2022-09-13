@@ -3,16 +3,10 @@ import { createStore } from "vuex";
 // state management for main program
 export default createStore({
   state: {
-    loginStatus: false,
+    isAuthenticated: false,
   },
-  getters: {
-    async loginUser({ commit }, e) {},
-  },
-  mutations: {
-    updateLoginStatus: (state, status) => {
-      state.loginStatus = status;
-    },
-  },
+  getters: {},
+  mutations: {},
   actions: {},
   modules: {
     // any states for other small components here

@@ -3,24 +3,24 @@
     <div class="logo">
       <img src="@/assets/img/logo.svg" alt="" />
     </div>
-    <h1>Welcome!</h1>
+    <h1>Register</h1>
 
-    <LoginForm></LoginForm>
+    <RegisterForm></RegisterForm>
 
     <div class="account__message">
       <p>
         Don't have an account?
-        <router-link to="/register">Sign Up</router-link>
+        <router-link to="/login">Sign In</router-link>
       </p>
     </div>
   </div>
 </template>
 
 <script>
-import LoginForm from "../components/LoginForm";
+import RegisterForm from "../components/RegisterForm";
 
 export default {
-  components: { LoginForm },
+  components: { RegisterForm },
 
   methods: {},
 };

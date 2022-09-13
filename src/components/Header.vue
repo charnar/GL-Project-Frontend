@@ -1,3 +1,17 @@
 <template>
-  <nav class="navbar"></nav>
+  <nav class="navbar">
+    <ul>
+      <li>About</li>
+      <li>My Games</li>
+      <li>Friends</li>
+    </ul>
+  </nav>
 </template>
+
+<script>
+export default {
+  name: "Header",
+};
+</script>
+
+<style></style>

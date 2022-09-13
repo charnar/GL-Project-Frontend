@@ -1,24 +1,20 @@
 <template>
-  <router-view
-    to="/"
-    @toggle-form="toggleForm"
-    :showRegisterForm="showRegisterForm"
-  ></router-view>
+  <Header v-show="isAuthenticated"></Header>
+  <router-view></router-view>
 </template>
 
 <script>
+import Header from "./components/Header.vue";
 export default {
   name: "App",
 
-  data() {
-    return {
-      showRegisterForm: false,
-    };
-  },
+  components: { Header },
 
-  methods: {
-    toggleForm() {
-      this.showRegisterForm = !this.showRegisterForm;
+  methods: {},
+
+  computed: {
+    isAuthenticated() {
+      return this.$store.state.isAuthenticated;
     },
   },
 };

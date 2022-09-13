@@ -1,0 +1,56 @@
+form {
+    margin-top: 4rem;
+    width: 70%;
+    max-width: 450px;
+  }
+  
+  input {
+    border-radius: 8px;
+    width: 100%;
+    font-size: 1.8rem;
+    z-index: 1;
+    padding: 18px 20px;
+  }
+  
+  .label {
+    position: absolute;
+    font-size: 1.8rem;
+    left: 10px;
+    top: 16px;
+    padding: 0 10px;
+    z-index: 1;
+    color: color.$font-secondary;
+    background: none;
+  }
+  
+  $inputs: text, password;
+  
+  @each $input in $inputs {
+    [type="#{$input}"] {
+      margin: 2rem 0;
+      position: relative;
+      top: 8px;
+      background: color.$input-field-type-1;
+      color: color.$font-main;
+  
+      &::placeholder {
+        color: color.$font-secondary;
+        font-weight: thin;
+        transition: all 0.3s;
+      }
+    }
+  }
+  
+  input[type="submit"] {
+    margin-top: 6rem;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    color: white;
+    font-weight: 600;
+    @include mixin.gradient-bg(
+      0.25turn,
+      color.$button-gradient-start,
+      color.$button-gradient-end
+    );
+  }
