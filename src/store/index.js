@@ -1,14 +1,20 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex";
 
+// state management for main program
 export default createStore({
   state: {
+    loginStatus: false,
   },
   getters: {
+    async loginUser({ commit }, e) {},
   },
   mutations: {
+    updateLoginStatus: (state, status) => {
+      state.loginStatus = status;
+    },
   },
-  actions: {
-  },
+  actions: {},
   modules: {
-  }
-})
+    // any states for other small components here
+  },
+});

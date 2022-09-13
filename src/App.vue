@@ -1,5 +1,6 @@
 <template>
   <router-view
+    to="/"
     @toggle-form="toggleForm"
     :showRegisterForm="showRegisterForm"
   ></router-view>

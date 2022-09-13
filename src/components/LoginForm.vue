@@ -3,16 +3,20 @@
     <span class="gradient__box">
       <input
         type="text"
-        id="username-email"
+        id="login-username-email"
         placeholder="Enter your username or email"
         autocomplete="off"
       />
-      <label for="username-email" class="label">Username/Email</label>
+      <label for="login-username-email" class="label">Username/Email</label>
     </span>
 
     <span class="gradient__box">
-      <input type="password" id="password" placeholder="Enter your password" />
-      <label for="password" class="label">Password</label>
+      <input
+        type="password"
+        id="login-passwd"
+        placeholder="Enter your password"
+      />
+      <label for="login-passwd" class="label">Password</label>
     </span>
 
     <input type="submit" value="Log In" />

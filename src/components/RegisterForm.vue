@@ -4,25 +4,29 @@
       <input
         autocomplete="off"
         type="text"
-        id="username"
+        id="register-username"
         placeholder="Enter your username"
       />
-      <label for="username" class="label">Username</label>
+      <label for="register-username" class="label">Username</label>
     </span>
 
     <span class="gradient__box">
       <input
         autocomplete="off"
         type="text"
-        id="email"
+        id="register-email"
         placeholder="Enter your email address"
       />
-      <label for="email" class="label">Email</label>
+      <label for="register-email" class="label">Email</label>
     </span>
 
     <span class="gradient__box">
-      <input type="password" id="password" placeholder="Enter your password" />
-      <label for="password" class="label">Password</label>
+      <input
+        type="password"
+        id="register-password"
+        placeholder="Enter your password"
+      />
+      <label for="register-password" class="label">Password</label>
     </span>
 
     <input type="submit" value="Register" />
@@ -104,7 +108,7 @@ $inputs: text, password;
 
       &::placeholder {
         opacity: 1;
-        animation-delay: 0.2s;
+        animation-delay: opacity 0.2s;
       }
     }
 
@@ -119,7 +123,7 @@ $inputs: text, password;
       color: color.$font-secondary;
       font-weight: thin;
       opacity: 0;
-      transition: all 0.3s;
+      transition: opacity 0.3s;
     }
   }
 }
