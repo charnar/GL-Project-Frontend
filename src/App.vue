@@ -45,6 +45,7 @@ h1 {
   padding: 0;
   box-sizing: border-box;
   border: none;
+  outline: none;
 }
 
 body {

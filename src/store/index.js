@@ -4,11 +4,12 @@ import { createStore } from "vuex";
 export default createStore({
   state: {
     isAuthenticated: false,
+    sessionID: "",
   },
   getters: {},
   mutations: {},
   actions: {},
   modules: {
-    // any states for other small components here
+    // any store for other small components here
   },
 });

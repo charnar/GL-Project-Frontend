@@ -5,7 +5,7 @@ module.exports = defineConfig({
     loaderOptions: {
       sass: {
         additionalData: `@use "@/assets/sass/color"; 
-        @use "@/assets/sass/mixin";`,
+        @use "@/assets/sass/mixin"; @use "@/assets/sass/animation";`,
       },
     },
   },

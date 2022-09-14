@@ -1,36 +1,26 @@
 <template>
-  <form ref="registerForm" @submit="onSubmit" class="register-form">
-    <span class="gradient__box">
-      <input
-        autocomplete="off"
-        type="text"
-        id="register-username"
-        placeholder="Enter your username"
-      />
-      <!-- <label for="register-username" class="label">Username</label> -->
-    </span>
+  <div class="form__container">
+    <form novalidate ref="registerForm" @submit="onSubmit">
+      <div class="input__box">
+        <input autocomplete="off" type="text" id="register-username" required />
+        <span>Username</span>
+      </div>
 
-    <span class="gradient__box">
-      <input
-        autocomplete="off"
-        type="text"
-        id="register-email"
-        placeholder="Enter your email address"
-      />
-      <!-- <label for="register-email" class="label">Email</label> -->
-    </span>
+      <div class="input__box">
+        <input autocomplete="off" type="text" id="register-email" required />
+        <span>Email</span>
+      </div>
 
-    <span class="gradient__box">
-      <input
-        type="password"
-        id="register-password"
-        placeholder="Enter your password"
-      />
-      <!-- <label for="register-password" class="label">Password</label> -->
-    </span>
+      <div class="input__box">
+        <input type="password" id="register-password" required />
+        <span>Password</span>
+      </div>
 
-    <input type="submit" value="Register" />
-  </form>
+      <div class="input__box">
+        <input type="submit" value="Register" />
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>

@@ -1,26 +1,26 @@
 <template>
-  <form ref="loginForm" @submit="onSubmit" class="login__form">
-    <span class="gradient__box">
-      <input
-        type="text"
-        id="login-username-email"
-        placeholder="Enter your username or email"
-        autocomplete="off"
-      />
-      <!-- <label for="login-username-email" class="label">Username/Email</label> -->
-    </span>
+  <div class="form__container">
+    <form novalidate ref="loginForm" @submit="onSubmit">
+      <div class="input__box">
+        <input
+          type="text"
+          id="login-username-email"
+          autocomplete="off"
+          required
+        />
+        <span>Username/Email</span>
+      </div>
 
-    <span class="gradient__box">
-      <input
-        type="password"
-        id="login-passwd"
-        placeholder="Enter your password"
-      />
-      <!-- <label for="login-passwd" class="label">Password</label> -->
-    </span>
+      <div class="input__box">
+        <input type="password" id="login-passwd" required />
+        <span>Password</span>
+      </div>
 
-    <input type="submit" value="Log In" />
-  </form>
+      <div class="input__box">
+        <input type="submit" value="Log In" />
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>
