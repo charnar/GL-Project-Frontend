@@ -1,22 +1,11 @@
 <template>
-  <Header v-show="isAuthenticated"></Header>
   <router-view></router-view>
 </template>
 
 <script>
-import Header from "./components/Header.vue";
 export default {
   name: "App",
-
-  components: { Header },
-
   methods: {},
-
-  computed: {
-    isAuthenticated() {
-      return this.$store.state.isAuthenticated;
-    },
-  },
 };
 </script>
 
@@ -46,6 +35,7 @@ h1 {
   box-sizing: border-box;
   border: none;
   outline: none;
+  text-decoration: none;
 }
 
 body {

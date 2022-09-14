@@ -49,7 +49,7 @@
       border: 3px solid color.$font-tertiary;
 
       ~ span {
-        transform: translateX(-18px) translateY(-42px);
+        transform: scale(1) translateX(-18px) translateY(-42px);
         font-size: 1.4rem;
         color: color.$font-tertiary;
       }
@@ -57,7 +57,7 @@
 
     &:valid {
       ~ span {
-        transform: translateX(-18px) translateY(-42px);
+        transform: scale(1) translateX(-18px) translateY(-42px);
         font-size: 1.4rem;
       }
     }
