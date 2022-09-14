@@ -3,7 +3,7 @@ import { createStore } from "vuex";
 // state management for main program
 export default createStore({
   state: {
-    isAuthenticated: false,
+    isAuthenticated: true,
     sessionID: "",
   },
   getters: {},
