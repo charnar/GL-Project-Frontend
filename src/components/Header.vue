@@ -15,9 +15,6 @@
           <router-link to="/about">About</router-link>
         </li>
         <li>
-          <router-link to="/something">My Games</router-link>
-        </li>
-        <li>
           <router-link to="/login">Logout</router-link>
         </li>
       </ul>

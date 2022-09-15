@@ -1,8 +1,6 @@
 <template>
   <Header></Header>
-  <div class="work__in__progress">
-    <h1>We're still working on it</h1>
-  </div>
+  <router-view></router-view>
 </template>
 
 <script>
@@ -13,14 +11,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 h1 {
   font-size: 3.6rem;
-}
-.work__in__progress {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
 }
 </style>
