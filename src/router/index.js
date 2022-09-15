@@ -3,8 +3,8 @@ import LoginView from "../views/LoginView";
 import DashboardView from "../views/DashboardView";
 import RegisterView from "../views/RegisterView";
 import HomeView from "../views/HomeView";
-
 import About from "../components/About";
+import store from "../store/index.js";
 
 const routes = [
   {
@@ -23,6 +23,14 @@ const routes = [
         component: About,
       },
     ],
+    beforeEnter: (to, from, next) => {
+      // if the user is not authenticated or their session has expired
+      if (!store.state.isAuthenticated) {
+        next("/login"); // go to login page
+      } else {
+        next();
+      }
+    },
   },
 
   {

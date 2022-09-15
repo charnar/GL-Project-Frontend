@@ -15,7 +15,7 @@
           <router-link to="/about">About</router-link>
         </li>
         <li>
-          <router-link to="/login">Logout</router-link>
+          <a @click="logoutUser">Logout</a>
         </li>
       </ul>
     </nav>
@@ -27,8 +27,13 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "Header",
+
+  methods: {
+    ...mapActions(["logoutUser"]),
+  },
 };
 </script>
 
@@ -37,7 +42,7 @@ header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin: 2rem 2.6rem;
+  margin: 2rem 4rem;
 }
 
 .logo {
@@ -72,6 +77,7 @@ header {
     a {
       text-decoration: none;
       color: color.$font-secondary;
+      cursor: pointer;
 
       &.router-link-exact-active {
         color: color.$font-tertiary;

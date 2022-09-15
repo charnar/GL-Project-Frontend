@@ -1,6 +1,6 @@
 <template>
   <div class="form__container">
-    <form novalidate ref="loginForm" @submit="onSubmit">
+    <form novalidate ref="loginForm" @submit="onLoginPressed">
       <div class="input__box">
         <input
           type="text"
@@ -24,14 +24,16 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "LoginForm",
   methods: {
+    ...mapActions(["checkLogin"]),
     // triggers when the form is submitted
-    onSubmit(e) {
+    onLoginPressed(e) {
       e.preventDefault();
-      console.log("Pressed log in");
-      this.$router.push("/");
+      this.checkLogin();
     },
   },
 };

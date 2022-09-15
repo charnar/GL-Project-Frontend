@@ -1,10 +1,8 @@
 <template>
-  <section>
+  <section class="library__section">
     <h1>My Library</h1>
-    <div game__library__grid>
-      <Game></Game>
-      <Game></Game>
-      <Game></Game>
+    <div class="game__library__grid">
+      <Game v-for="n in 10" :key="n"></Game>
     </div>
   </section>
 </template>
@@ -18,10 +16,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.game__library__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 20px;
-  padding: 2rem;
+.library__section {
+  padding: 2rem 4rem;
+
+  .game__library__grid {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: space-evenly;
+    gap: 3.6rem;
+  }
 }
 </style>

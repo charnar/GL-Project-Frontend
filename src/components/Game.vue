@@ -10,12 +10,14 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .game__card {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 300px;
   background: color.$profile-icon-bg;
+  height: 400px;
+  border-radius: 10px;
+  text-align: center;
 }
 </style>
