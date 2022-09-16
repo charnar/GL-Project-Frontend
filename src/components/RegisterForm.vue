@@ -2,22 +2,45 @@
   <div class="form__container">
     <form novalidate ref="registerForm" @submit="onSubmit">
       <div class="input__box">
-        <input autocomplete="off" type="text" id="register-username" required />
+        <input
+          v-model="usernameInput"
+          autocomplete="off"
+          type="text"
+          id="register-username"
+          required
+        />
         <span>Username</span>
       </div>
 
       <div class="input__box">
-        <input autocomplete="off" type="text" id="register-email" required />
+        <input
+          v-model="emailInput"
+          autocomplete="off"
+          type="text"
+          id="register-email"
+          required
+        />
         <span>Email</span>
       </div>
 
       <div class="input__box">
-        <input type="password" id="register-password" required />
+        <input
+          v-model="passwordInput"
+          type="password"
+          id="register-password"
+          required
+        />
         <span>Password</span>
       </div>
 
       <div class="input__box">
-        <input type="submit" value="Register" />
+        <button
+          v-bind:class="btnDisable ? 'btn btn__disable' : 'btn btn__active'"
+          :disabled="btnDisable"
+          type="submit"
+        >
+          Register
+        </button>
       </div>
     </form>
   </div>
@@ -26,6 +49,22 @@
 <script>
 export default {
   name: "RegisterForm",
+
+  data() {
+    return {
+      usernameInput: "",
+      emailInput: "",
+      passwordInput: "",
+    };
+  },
+
+  computed: {
+    btnDisable: function () {
+      return !this.usernameInput || !this.passwordInput || !this.emailInput
+        ? true
+        : false;
+    },
+  },
 
   methods: {
     // triggers when the form is submitted

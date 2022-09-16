@@ -17,6 +17,7 @@
           v-model="passwordInput"
           type="password"
           id="login-passwd"
+          autocomplete="off"
           required
         />
         <span>Password</span>
@@ -24,10 +25,12 @@
 
       <div class="input__box">
         <button
-          :disabled="usernameInput === '' || passwordInput === ''"
+          v-bind:class="btnDisable ? 'btn btn__disable' : 'btn btn__active'"
+          :disabled="btnDisable"
           type="submit"
-          value="Log In"
-        />
+        >
+          Log In
+        </button>
       </div>
     </form>
   </div>
@@ -38,12 +41,20 @@ import { mapActions } from "vuex";
 
 export default {
   name: "LoginForm",
-  computed() {
+
+  data() {
     return {
-      passwordInput,
-      usernameInput,
+      usernameInput: "",
+      passwordInput: "",
     };
   },
+
+  computed: {
+    btnDisable: function () {
+      return !this.usernameInput || !this.passwordInput ? true : false;
+    },
+  },
+
   methods: {
     ...mapActions(["checkLogin"]),
     // triggers when the form is submitted

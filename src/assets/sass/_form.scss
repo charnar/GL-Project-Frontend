@@ -63,17 +63,32 @@
     }
   }
 
-  input[type="submit"] {
-    cursor: pointer;
+  .btn {
+    font-size: 1.8rem;
+    cursor: normal;
+    width: 100%;
+    border-radius: 8px;
+    border: 3px solid transparent;
     color: white;
     font-weight: 600;
-    @include mixin.gradient-bg(
-      0.25turn,
-      color.$button-gradient-start,
-      color.$button-gradient-end
-    );
-
     padding: 1.9rem 1.6rem;
     border: none;
+  }
+
+  .btn__disable {
+    @include mixin.gradient-bg(
+      0.25turn,
+      color.$btn-gradient-disable-start,
+      color.$btn-gradient-disable-end
+    );
+  }
+
+  .btn__active {
+    cursor: pointer;
+    @include mixin.gradient-bg(
+      0.25turn,
+      color.$btn-gradient-active-start,
+      color.$btn-gradient-active-end
+    );
   }
 }
