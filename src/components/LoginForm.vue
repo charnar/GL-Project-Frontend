@@ -3,6 +3,7 @@
     <form novalidate ref="loginForm" @submit="onLoginPressed">
       <div class="input__box">
         <input
+          v-model="usernameInput"
           type="text"
           id="login-username-email"
           autocomplete="off"
@@ -12,12 +13,21 @@
       </div>
 
       <div class="input__box">
-        <input type="password" id="login-passwd" required />
+        <input
+          v-model="passwordInput"
+          type="password"
+          id="login-passwd"
+          required
+        />
         <span>Password</span>
       </div>
 
       <div class="input__box">
-        <input type="submit" value="Log In" />
+        <button
+          :disabled="usernameInput === '' || passwordInput === ''"
+          type="submit"
+          value="Log In"
+        />
       </div>
     </form>
   </div>
@@ -28,6 +38,12 @@ import { mapActions } from "vuex";
 
 export default {
   name: "LoginForm",
+  computed() {
+    return {
+      passwordInput,
+      usernameInput,
+    };
+  },
   methods: {
     ...mapActions(["checkLogin"]),
     // triggers when the form is submitted
