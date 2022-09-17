@@ -1,6 +1,6 @@
 <template>
   <div class="form__container">
-    <form novalidate ref="registerForm" @submit="onSubmit">
+    <form novalidate ref="registerForm" @submit="onRegisterSubmit">
       <div class="input__box">
         <input
           v-model="usernameInput"
@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "RegisterForm",
 
@@ -67,10 +68,16 @@ export default {
   },
 
   methods: {
+    ...mapActions(["checkRegistration"]),
+
     // triggers when the form is submitted
-    onSubmit(e) {
+    onRegisterSubmit(e) {
       e.preventDefault();
-      console.log("Pressed register button");
+      this.checkRegistration({
+        username: this.usernameInput,
+        email: this.emailInput,
+        password: this.passwordInput,
+      });
     },
 
     // resets the inputs on the HTML Form

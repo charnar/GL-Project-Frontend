@@ -18,10 +18,15 @@
 
 <script>
 import RegisterForm from "../components/RegisterForm";
+import { mapState } from "vuex";
 
 export default {
+  data() {
+    return {
+      registerStatus: mapState(["registerStatus"]),
+    };
+  },
   components: { RegisterForm },
-
   methods: {},
 };
 </script>

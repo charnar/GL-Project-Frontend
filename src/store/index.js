@@ -1,5 +1,7 @@
 import { createStore } from "vuex";
 import router from "../router/index.js";
+import registration from "./modules/registration.js";
+import login from "./modules/login.js";
 
 // state management for main program
 export default createStore({
@@ -22,15 +24,6 @@ export default createStore({
     },
   },
   actions: {
-    async checkLogin({ commit }) {
-      // condition to check login goes here
-      if (true) {
-        commit("setAuthenticate");
-        console.log(this.state.isAuthenticated);
-        router.push("/");
-      }
-    },
-
     async logoutUser({ commit }) {
       commit("removeAuthenticate");
       console.log(this.state.isAuthenticated);
@@ -38,6 +31,8 @@ export default createStore({
     },
   },
   modules: {
-    // any store for other small components here
+    // any store for other components here
+    login,
+    registration,
   },
 });
