@@ -8,6 +8,7 @@ export default createStore({
   state: {
     isAuthenticated: false,
     sessionID: "",
+    username: "",
   },
   getters: {
     getAuthentication(state) {
@@ -21,6 +22,14 @@ export default createStore({
 
     removeAuthenticate(state) {
       state.isAuthenticated = false;
+    },
+
+    setSessionID(state, sessionID) {
+      state.sessionID = sessionID;
+    },
+
+    setUsername(state, username) {
+      state.username = username;
     },
   },
   actions: {

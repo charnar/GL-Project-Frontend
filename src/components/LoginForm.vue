@@ -3,7 +3,7 @@
     <form novalidate ref="loginForm" @submit="onLoginPressed">
       <div class="input__box">
         <input
-          v-model="usernameInput"
+          v-model="usernameEmailInput"
           type="text"
           id="login-username-email"
           autocomplete="off"
@@ -28,9 +28,7 @@
           v-bind:class="btnDisable ? 'btn btn__disable' : 'btn btn__active'"
           :disabled="btnDisable"
           type="submit"
-        >
-          Log In
-        </button>
+        ></button>
       </div>
     </form>
   </div>
@@ -44,14 +42,14 @@ export default {
 
   data() {
     return {
-      usernameInput: "",
+      usernameEmailInput: "",
       passwordInput: "",
     };
   },
 
   computed: {
     btnDisable: function () {
-      return !this.usernameInput || !this.passwordInput ? true : false;
+      return !this.usernameEmailInput || !this.passwordInput ? true : false;
     },
   },
 
@@ -60,7 +58,10 @@ export default {
     // triggers when the form is submitted
     onLoginPressed(e) {
       e.preventDefault();
-      this.checkLogin();
+      this.checkLogin({
+        usernameEmail: this.usernameEmailInput,
+        password: this.passwordInput,
+      });
     },
   },
 };
