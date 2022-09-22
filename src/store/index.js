@@ -6,7 +6,7 @@ import login from "./modules/login.js";
 // state management for main program
 export default createStore({
   state: {
-    isAuthenticated: false,
+    isAuthenticated: true,
     sessionID: "",
     username: "",
   },

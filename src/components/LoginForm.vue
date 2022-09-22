@@ -28,7 +28,9 @@
           v-bind:class="btnDisable ? 'btn btn__disable' : 'btn btn__active'"
           :disabled="btnDisable"
           type="submit"
-        ></button>
+        >
+          Log In
+        </button>
       </div>
     </form>
   </div>
