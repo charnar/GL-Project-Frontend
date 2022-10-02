@@ -1,33 +1,23 @@
 <template>
   <div class="form__container">
-    <form novalidate ref="registerForm" @submit="onRegisterSubmit">
+    <form novalidate ref="loginForm" @submit="onLoginPressed">
       <div class="input__box">
         <input
-          v-model="usernameInput"
-          autocomplete="off"
+          v-model="usernameEmailInput"
           type="text"
-          id="register-username"
+          id="login-username-email"
+          autocomplete="off"
           required
         />
-        <span>Username</span>
-      </div>
-
-      <div class="input__box">
-        <input
-          v-model="emailInput"
-          autocomplete="off"
-          type="text"
-          id="register-email"
-          required
-        />
-        <span>Email</span>
+        <span>Username/Email</span>
       </div>
 
       <div class="input__box">
         <input
           v-model="passwordInput"
           type="password"
-          id="register-password"
+          id="login-passwd"
+          autocomplete="off"
           required
         />
         <span>Password</span>
@@ -39,7 +29,7 @@
           :disabled="btnDisable"
           type="submit"
         >
-          Register
+          Log In
         </button>
       </div>
     </form>
@@ -48,46 +38,37 @@
 
 <script>
 import { mapActions } from "vuex";
+
 export default {
-  name: "RegisterForm",
+  name: "LoginForm",
 
   data() {
     return {
-      usernameInput: "",
-      emailInput: "",
+      usernameEmailInput: "",
       passwordInput: "",
     };
   },
 
   computed: {
     btnDisable: function () {
-      return !this.usernameInput || !this.passwordInput || !this.emailInput
-        ? true
-        : false;
+      return !this.usernameEmailInput || !this.passwordInput ? true : false;
     },
   },
 
   methods: {
-    ...mapActions(["checkRegistration"]),
-
+    ...mapActions(["checkLogin"]),
     // triggers when the form is submitted
-    onRegisterSubmit(e) {
+    onLoginPressed(e) {
       e.preventDefault();
-      this.checkRegistration({
-        username: this.usernameInput,
-        email: this.emailInput,
+      this.checkLogin({
+        usernameEmail: this.usernameEmailInput,
         password: this.passwordInput,
       });
-    },
-
-    // resets the inputs on the HTML Form
-    resetForm() {
-      this.$refs.registerForm.reset();
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/sass/_form.scss";
+@import "@/assets/sass/_form.scss";
 </style>

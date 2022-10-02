@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import GameLibrary from "../components/GameLibrary";
+import GameLibrary from "@/components/game-library/GameLibrary";
 export default {
   components: { GameLibrary },
 };

@@ -2,7 +2,7 @@
   <header>
     <span class="logo">
       <router-link class="logo" to="/">
-        <img src="../assets/img/logo.svg" />
+        <img src="@/assets/img/logo.svg" />
       </router-link>
     </span>
 
@@ -21,7 +21,7 @@
     </nav>
 
     <span class="profile__logo">
-      <img src="../assets/img/vue_logo.png" alt="" />
+      <img src="@/assets/img/vue_logo.png" alt="" />
     </span>
   </header>
 </template>

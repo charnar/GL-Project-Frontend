@@ -1,9 +1,8 @@
 import { createStore } from "vuex";
-import router from "../router/index.js";
+import router from "@/router/index.js";
 import registration from "./modules/registration.js";
 import login from "./modules/login.js";
 
-// state management for main program
 export default createStore({
   state: {
     isAuthenticated: true,

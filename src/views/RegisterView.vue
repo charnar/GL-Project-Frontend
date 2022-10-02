@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import RegisterForm from "../components/RegisterForm";
+import RegisterForm from "@/components/forms/RegisterForm";
 import { mapState } from "vuex";
 
 export default {

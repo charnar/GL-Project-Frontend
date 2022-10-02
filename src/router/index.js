@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
-import LoginView from "../views/LoginView";
-import DashboardView from "../views/DashboardView";
-import RegisterView from "../views/RegisterView";
-import HomeView from "../views/HomeView";
-import About from "../components/About";
+import LoginView from "@/views/LoginView";
+import DashboardView from "@/views/DashboardView";
+import RegisterView from "@/views/RegisterView";
+import HomeView from "@/views/HomeView";
+import AboutView from "@/views/AboutView";
+
 import store from "../store/index.js";
 
 const routes = [
@@ -19,8 +20,8 @@ const routes = [
       },
       {
         path: "about",
-        name: "About",
-        component: About,
+        name: "AboutView",
+        component: AboutView,
       },
     ],
     beforeEnter: (to, from, next) => {
