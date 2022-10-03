@@ -19,7 +19,9 @@ const actions = {
         email: registerInfo.email,
         password: registerInfo.password,
       });
-      console.log(response.data);
+
+      const { status, username } = response.data;
+      commit("setRegisterStatus", status);
     } catch (err) {
       console.error(err);
     }

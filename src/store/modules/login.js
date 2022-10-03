@@ -2,7 +2,9 @@ import { API_URL } from "@/configs.js";
 import axios from "axios";
 import router from "@/router/index.js";
 
-const state = {};
+const state = {
+  loginStatus: "NORMAL",
+};
 
 const getters = {};
 

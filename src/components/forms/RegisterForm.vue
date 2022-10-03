@@ -1,26 +1,46 @@
 <template>
   <div class="form__container">
     <form novalidate ref="registerForm" @submit="onRegisterSubmit">
-      <div class="input__box">
+      <div
+        class="input__box"
+        :class="{
+          input__box__error: this.getRegisterStatus === 'DUPLICATE_USERNAME',
+        }"
+      >
         <input
           v-model="usernameInput"
           autocomplete="off"
           type="text"
           id="register-username"
           required
+          @click="resetStatus()"
         />
-        <span>Username</span>
+        <span>{{
+          this.getRegisterStatus === "DUPLICATE_USERNAME"
+            ? "Username already exists!"
+            : "Username"
+        }}</span>
       </div>
 
-      <div class="input__box">
+      <div
+        class="input__box"
+        :class="{
+          input__box__error: this.getRegisterStatus === 'DUPLICATE_EMAIL',
+        }"
+      >
         <input
           v-model="emailInput"
           autocomplete="off"
           type="text"
           id="register-email"
           required
+          @click="resetStatus()"
         />
-        <span>Email</span>
+        <span>{{
+          this.getRegisterStatus === "DUPLICATE_EMAIL"
+            ? "Email has been registered!"
+            : "Email"
+        }}</span>
       </div>
 
       <div class="input__box">
@@ -47,7 +67,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "RegisterForm",
 
@@ -60,15 +80,19 @@ export default {
   },
 
   computed: {
+    ...mapGetters(["getRegisterStatus"]),
     btnDisable: function () {
-      return !this.usernameInput || !this.passwordInput || !this.emailInput
+      return !this.usernameInput ||
+        !this.passwordInput ||
+        !this.emailInput ||
+        this.getRegisterStatus != "NORMAL"
         ? true
         : false;
     },
   },
 
   methods: {
-    ...mapActions(["checkRegistration"]),
+    ...mapActions(["checkRegistration", "updateRegisterStatus"]),
 
     // triggers when the form is submitted
     onRegisterSubmit(e) {
@@ -80,6 +104,9 @@ export default {
       });
     },
 
+    resetStatus() {
+      this.updateRegisterStatus("NORMAL");
+    },
     // resets the inputs on the HTML Form
     resetForm() {
       this.$refs.registerForm.reset();

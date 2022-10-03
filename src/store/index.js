@@ -2,12 +2,12 @@ import { createStore } from "vuex";
 import router from "@/router/index.js";
 import registration from "./modules/registration.js";
 import login from "./modules/login.js";
+import user from "./modules/user.js";
 
 export default createStore({
   state: {
-    isAuthenticated: true,
+    isAuthenticated: false, // set to true for fake login
     sessionID: "",
-    username: "",
   },
   getters: {
     getAuthentication(state) {
@@ -26,10 +26,6 @@ export default createStore({
     setSessionID(state, sessionID) {
       state.sessionID = sessionID;
     },
-
-    setUsername(state, username) {
-      state.username = username;
-    },
   },
   actions: {
     async logoutUser({ commit }) {
@@ -40,6 +36,7 @@ export default createStore({
   },
   modules: {
     // any store for other components here
+    user,
     login,
     registration,
   },

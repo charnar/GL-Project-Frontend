@@ -1,10 +1,17 @@
-const state = {};
+const state = {
+  username: "",
+  profilePicture: "",
+};
 
 const getters = {};
 
 const actions = {};
 
-const mutations = {};
+const mutations = {
+  setUsername(state, username) {
+    state.username = username;
+  },
+};
 
 export default {
   state,

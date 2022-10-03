@@ -92,3 +92,15 @@
     );
   }
 }
+
+.input__box__error {
+  input {
+    border: 3px solid color.$highlight-error;
+    @include animation.transition(0.2s);
+  }
+
+  span {
+    color: color.$font-error;
+    @include animation.transition(0.2s);
+  }
+}
