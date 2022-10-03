@@ -40,9 +40,13 @@ export default {
     width: 100%;
     margin-top: 3rem;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    column-gap: 2.4rem;
+    row-gap: 4rem;
     justify-content: space-evenly;
-    gap: 3.6rem;
+    justify-items: center;
+    align-content: space-evenly;
+    align-items: center;
   }
 }
 </style>

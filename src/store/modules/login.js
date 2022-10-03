@@ -6,7 +6,11 @@ const state = {
   loginStatus: "NORMAL",
 };
 
-const getters = {};
+const getters = {
+  getLoginStatus(store) {
+    return store.loginStatus;
+  },
+};
 
 const actions = {
   async checkLogin({ commit }, loginInfo) {
@@ -19,21 +23,29 @@ const actions = {
 
       const { status, username, session_id } = response.data;
 
+      commit("setLoginStatus", status);
+
       if (status === "SUCCESS") {
         commit("setAuthenticate");
         commit("setSessionID", session_id);
         commit("setUsername", username);
         router.push("/");
-      } else {
-        console.log(`Something went wrong. ${status}`);
       }
     } catch (err) {
       console.error(err);
     }
   },
+
+  updateLoginStatus({ commit }, status) {
+    commit("setLoginStatus", status);
+  },
 };
 
-const mutations = {};
+const mutations = {
+  setLoginStatus(store, status) {
+    store.loginStatus = status;
+  },
+};
 
 export default {
   state,

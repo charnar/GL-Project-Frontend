@@ -1,26 +1,46 @@
 <template>
   <div class="form__container">
     <form novalidate ref="loginForm" @submit="onLoginPressed">
-      <div class="input__box">
+      <div
+        class="input__box"
+        :class="{
+          input__box__error: this.getLoginStatus === 'INVALID_USERNAME',
+        }"
+      >
         <input
           v-model="usernameEmailInput"
           type="text"
           id="login-username-email"
           autocomplete="off"
           required
+          @click="resetStatus()"
         />
-        <span>Username/Email</span>
+        <span>{{
+          this.getLoginStatus === "INVALID_USERNAME"
+            ? "User does not exist!"
+            : "Username/Email"
+        }}</span>
       </div>
 
-      <div class="input__box">
+      <div
+        class="input__box"
+        :class="{
+          input__box__error: this.getLoginStatus === 'INVALID_PASSWORD',
+        }"
+      >
         <input
           v-model="passwordInput"
           type="password"
           id="login-passwd"
           autocomplete="off"
           required
+          @click="resetStatus()"
         />
-        <span>Password</span>
+        <span>{{
+          this.getLoginStatus === "INVALID_PASSWORD"
+            ? "Wrong password!"
+            : "Password"
+        }}</span>
       </div>
 
       <div class="input__box">
@@ -37,7 +57,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "LoginForm",
@@ -50,13 +70,18 @@ export default {
   },
 
   computed: {
+    ...mapGetters(["getLoginStatus"]),
     btnDisable: function () {
-      return !this.usernameEmailInput || !this.passwordInput ? true : false;
+      return !this.usernameEmailInput ||
+        !this.passwordInput ||
+        this.getLoginStatus !== "NORMAL"
+        ? true
+        : false;
     },
   },
 
   methods: {
-    ...mapActions(["checkLogin"]),
+    ...mapActions(["checkLogin", "updateLoginStatus"]),
     // triggers when the form is submitted
     onLoginPressed(e) {
       e.preventDefault();
@@ -64,6 +89,10 @@ export default {
         usernameEmail: this.usernameEmailInput,
         password: this.passwordInput,
       });
+    },
+
+    resetStatus() {
+      this.updateLoginStatus("NORMAL");
     },
   },
 };
