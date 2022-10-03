@@ -37,6 +37,7 @@ export default {
   padding: 2rem 4rem;
 
   .game__library__grid {
+    width: 100%;
     margin-top: 3rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;

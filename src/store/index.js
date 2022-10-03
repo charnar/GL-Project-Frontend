@@ -6,7 +6,7 @@ import user from "./modules/user.js";
 
 export default createStore({
   state: {
-    isAuthenticated: false, // set to true for fake login
+    isAuthenticated: true, // set to true for fake login
     sessionID: "",
   },
   getters: {
