@@ -1,9 +1,13 @@
 import axios from "axios";
 import { API_URL } from "@/configs.js";
 
-const state = {
-  registerStatus: "NORMAL",
+const defaultRegistrationState = () => {
+  return {
+    registerStatus: "NORMAL",
+  };
 };
+
+const state = defaultRegistrationState();
 
 const getters = {
   getRegisterStatus(store) {
@@ -36,6 +40,10 @@ const actions = {
 const mutations = {
   setRegisterStatus(store, status) {
     store.registerStatus = status;
+  },
+
+  resetRegistrationState(state) {
+    Object.assign(state, defaultRegistrationState());
   },
 };
 

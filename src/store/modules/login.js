@@ -1,10 +1,15 @@
 import { API_URL } from "@/configs.js";
 import axios from "axios";
 import router from "@/router/index.js";
+import store from "..";
 
-const state = {
-  loginStatus: "NORMAL",
+const defaultLoginState = () => {
+  return {
+    loginStatus: "NORMAL",
+  };
 };
+
+const state = defaultLoginState();
 
 const getters = {
   getLoginStatus(store) {
@@ -44,6 +49,10 @@ const actions = {
 const mutations = {
   setLoginStatus(store, status) {
     store.loginStatus = status;
+  },
+
+  resetLoginState(state) {
+    Object.assign(state, defaultLoginState());
   },
 };
 

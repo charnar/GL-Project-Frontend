@@ -1,14 +1,25 @@
 import { createStore } from "vuex";
+import createPersistedState from "vuex-persistedstate";
 import router from "@/router/index.js";
 import registration from "./modules/registration.js";
 import login from "./modules/login.js";
 import user from "./modules/user.js";
 
-export default createStore({
-  state: {
-    isAuthenticated: true, // set to true for fake login (TESTING PURPOSES)
+const defaultIndexState = () => {
+  return {
+    isAuthenticated: false,
     sessionID: "",
-  },
+  };
+};
+
+const dataState = createPersistedState({
+  key: "GameLibraryAppState",
+  paths: ["user.username", "sessionID", "isAuthenticated"],
+});
+
+export default createStore({
+  state: defaultIndexState(),
+
   getters: {
     getAuthentication(state) {
       return state.isAuthenticated;
@@ -19,18 +30,20 @@ export default createStore({
       state.isAuthenticated = true;
     },
 
-    removeAuthenticate(state) {
-      state.isAuthenticated = false;
-    },
-
     setSessionID(state, sessionID) {
       state.sessionID = sessionID;
+    },
+
+    resetState(state) {
+      Object.assign(state, defaultIndexState());
     },
   },
   actions: {
     async logoutUser({ commit }) {
-      commit("removeAuthenticate");
-      console.log(this.state.isAuthenticated);
+      commit("resetState");
+      commit("resetLoginState");
+      commit("resetRegistrationState");
+      commit("resetUserState");
       router.push("/login");
     },
   },
@@ -40,4 +53,6 @@ export default createStore({
     login,
     registration,
   },
+
+  plugins: [dataState],
 });
