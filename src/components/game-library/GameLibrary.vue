@@ -10,23 +10,26 @@
     ></LibraryBar>
 
     <div class="game__library__grid">
-      <Game v-for="n in 10" :key="n"></Game>
+      <Game v-for="g in games" :key="g" :gameInfo="g"></Game>
     </div>
   </section>
 </template>
 
 <script>
 import Game from "./Game";
+import axios from "axios";
 import { mapGetters, mapActions } from "vuex";
 import FilterBox from "../inputs/FilterBox";
 import LibraryBar from "./LibraryBar";
-import { GAME_LIBRARIES } from "@/configs"; // replace later with response from backend
+import { getLibraryGames } from "@/helper.js";
+import { JSON_API_URL } from "@/configs"; // replace later with response from backend
 export default {
   name: "GameLibrary",
   components: { Game, FilterBox, LibraryBar },
   data() {
     return {
-      gameLibraries: GAME_LIBRARIES, // replace this part too
+      gameLibraries: [], // replace this part too
+      games: [],
     };
   },
 
@@ -39,12 +42,28 @@ export default {
     onLibraryChange(libraryName) {
       this.changeLibraryFilter(libraryName);
     },
+
+    async fetchGameLibrary() {
+      try {
+        const libraryGames = await axios.get(
+          `${JSON_API_URL}/all-library-games`
+        );
+
+        [this.gameLibraries, this.games] = getLibraryGames(libraryGames.data);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  },
+
+  async mounted() {
+    await this.fetchGameLibrary();
   },
 };
 </script>
 
 <style lang="scss" scoped>
-$width: 220px;
+$width: 260px;
 
 .library__section {
   padding: 2rem 4rem;

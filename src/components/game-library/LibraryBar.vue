@@ -41,6 +41,12 @@ export default {
   color: color.$font-inactive;
   margin: 0 2.6rem;
   font-size: 1.6rem;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .library__bar {
@@ -53,6 +59,7 @@ export default {
 
 .library__button__active {
   color: color.$font-active;
+
   border-bottom: 1px solid;
 }
 </style>

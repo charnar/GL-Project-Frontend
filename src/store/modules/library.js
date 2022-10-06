@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const defaultLibraryState = () => {
   return {
     games: [],
@@ -16,6 +18,14 @@ const getters = {
 const actions = {
   changeLibraryFilter({ commit }, filter) {
     commit("setLibraryFilter", filter);
+  },
+
+  async updateGames({ commit }, library) {
+    try {
+      commit("setGames");
+    } catch (err) {
+      console.error(err);
+    }
   },
 };
 

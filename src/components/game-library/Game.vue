@@ -1,15 +1,12 @@
 <template>
   <div class="game__card">
     <div class="game__image">
-      <img
-        src="https://store-images.s-microsoft.com/image/apps.44413.65985311967005000.4f51b5e9-febf-4990-8951-33ba59b634c9.924253ef-36b2-4cc0-8bb1-9a97c88d4828"
-        alt=""
-      />
+      <img :src="gameInfo.picture_url" />
     </div>
 
     <div class="game__info">
-      <h1>Stardew Valley</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      <h1>{{ gameInfo.game_name }}</h1>
+      <p>{{ gameInfo.game_description }}</p>
     </div>
   </div>
 </template>
@@ -17,24 +14,25 @@
 <script>
 export default {
   name: "Game",
+  props: ["gameInfo"],
 };
 </script>
 
 <style lang="scss">
 .game__card {
   background: #21242d;
-  max-width: 24rem;
+  width: 26rem;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .game__image {
-  width: 100%;
-  height: 24rem;
+  height: 34rem;
+  overflow: hidden;
 
   img {
     width: 100%;
-    height: 100%;
+    height: inherit;
     object-fit: cover;
     border-radius: 10px;
   }
@@ -52,6 +50,14 @@ export default {
     color: color.$font-description;
     font-size: 1.4rem;
     font-weight: 600;
+    text-overflow: ellipsis;
+
+    /* Needed to make it work */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }
 </style>

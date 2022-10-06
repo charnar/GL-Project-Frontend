@@ -69,6 +69,7 @@ header {
 .nav__links {
   list-style: none;
   padding: 0 1.8rem;
+
   li {
     display: inline-block;
     padding: 0 1.8rem;
@@ -76,12 +77,14 @@ header {
 
     a {
       text-decoration: none;
-      color: color.$font-secondary;
+      color: color.$font-inactive;
       cursor: pointer;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s;
 
       &.router-link-exact-active {
         color: color.$font-tertiary;
-        border-bottom: 1px solid color.$font-tertiary;
+        border-bottom: 1px solid color.$font-active;
       }
     }
   }
