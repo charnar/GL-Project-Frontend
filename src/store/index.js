@@ -4,6 +4,7 @@ import router from "@/router/index.js";
 import registration from "./modules/registration.js";
 import login from "./modules/login.js";
 import user from "./modules/user.js";
+import library from "./modules/library";
 
 const defaultIndexState = () => {
   return {
@@ -52,6 +53,7 @@ export default createStore({
     user,
     login,
     registration,
+    library,
   },
 
   plugins: [dataState],
