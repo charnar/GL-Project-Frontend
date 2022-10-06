@@ -18,7 +18,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .game__card {
   background: #21242d;
   width: 26rem;

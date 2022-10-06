@@ -1,6 +1,6 @@
 <template>
   <section class="library__section">
-    <h1>My Library</h1>
+    <SearchBox></SearchBox>
     <!-- Render only if user linked more than 1 library -->
     <LibraryBar
       v-if="this.gameLibraries.length > 2"
@@ -19,13 +19,14 @@
 import Game from "./Game";
 import axios from "axios";
 import { mapGetters, mapActions } from "vuex";
-import FilterBox from "../inputs/FilterBox";
+import FilterBox from "../ui/FilterBox";
 import LibraryBar from "./LibraryBar";
+import SearchBox from "./SearchBox";
 import { getLibraryGames } from "@/helper.js";
 import { JSON_API_URL } from "@/configs"; // replace later with response from backend
 export default {
   name: "GameLibrary",
-  components: { Game, FilterBox, LibraryBar },
+  components: { Game, LibraryBar, SearchBox },
   data() {
     return {
       gameLibraries: [], // replace this part too
