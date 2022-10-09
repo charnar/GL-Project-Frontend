@@ -16,19 +16,11 @@
 <script>
 export default {
   name: "LibraryBar",
-  props: ["libraries", "handleChange", "currentLibrary"],
+  props: ["libraries", "handler", "currentLibrary"],
   methods: {
     onClick(e) {
       if (e.target.classList.contains("library__button")) {
-        // Remove active class from all buttons
-        // const libraryButtons = document.querySelectorAll(".library__button");
-        // libraryButtons.forEach((btn) =>
-        //   btn.classList.remove("library__button__active")
-        // );
-        // e.target.classList.add("library__button__active");
-
-        // Bubble value back to GameLibrary Component
-        this.handleChange && this.handleChange(e.target.innerText);
+        this.handler && this.handler(e.target.innerText);
       }
     },
   },

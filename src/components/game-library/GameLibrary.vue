@@ -1,16 +1,23 @@
 <template>
   <section class="library__section">
-    <SearchBox></SearchBox>
+    <SearchBox
+      :currentSearch="this.getSearchValue"
+      :handler="this.onSearchChange"
+    ></SearchBox>
     <!-- Render only if user linked more than 1 library -->
     <LibraryBar
-      v-if="this.gameLibraries.length > 2"
-      :libraries="this.gameLibraries"
-      :handleChange="this.onLibraryChange"
+      v-if="this.getGameLibraries.length > 2"
+      :libraries="this.getGameLibraries"
+      :handler="this.onLibraryChange"
       :currentLibrary="this.getLibraryFilter"
     ></LibraryBar>
 
     <div class="game__library__grid">
-      <Game v-for="g in games" :key="g" :gameInfo="g"></Game>
+      <Game
+        v-for="game in this.getDisplayGames"
+        :key="game"
+        :gameInfo="game"
+      ></Game>
     </div>
   </section>
 </template>
@@ -19,9 +26,9 @@
 import Game from "./Game";
 import axios from "axios";
 import { mapGetters, mapActions } from "vuex";
-import FilterBox from "../ui/FilterBox";
+// import FilterBox from "../ui/FilterBox";
 import LibraryBar from "./LibraryBar";
-import SearchBox from "./SearchBox";
+import SearchBox from "../ui/SearchBox";
 import { getLibraryGames } from "@/helper.js";
 import { JSON_API_URL } from "@/configs"; // replace later with response from backend
 export default {
@@ -29,28 +36,45 @@ export default {
   components: { Game, LibraryBar, SearchBox },
   data() {
     return {
-      gameLibraries: [], // replace this part too
       games: [],
     };
   },
 
   computed: {
-    ...mapGetters(["getLibraryFilter"]),
+    ...mapGetters([
+      "getLibraryFilter",
+      "getSearchValue",
+      "getGameLibraries",
+      "getDisplayGames",
+    ]),
   },
 
   methods: {
-    ...mapActions(["changeLibraryFilter"]),
+    ...mapActions([
+      "updateLibraryFilter",
+      "updateSearchValue",
+      "updateGames",
+      "updateGameLibraries",
+      "updateDisplayGames",
+    ]),
     onLibraryChange(libraryName) {
-      this.changeLibraryFilter(libraryName);
+      this.updateLibraryFilter(libraryName);
     },
 
-    async fetchGameLibrary() {
+    onSearchChange(searchVal) {
+      this.updateSearchValue(searchVal);
+    },
+
+    async fetchAllGames() {
       try {
         const libraryGames = await axios.get(
-          `${JSON_API_URL}/all-library-games`
+          `${JSON_API_URL}/all-library-games` // replace this later
         );
 
-        [this.gameLibraries, this.games] = getLibraryGames(libraryGames.data);
+        const [gameLibraries, games] = getLibraryGames(libraryGames.data);
+        this.updateGameLibraries(gameLibraries);
+        this.updateGames(games);
+        this.updateDisplayGames(games);
       } catch (err) {
         console.log(err);
       }
@@ -58,7 +82,7 @@ export default {
   },
 
   async mounted() {
-    await this.fetchGameLibrary();
+    await this.fetchAllGames();
   },
 };
 </script>
