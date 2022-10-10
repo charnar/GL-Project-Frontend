@@ -45,6 +45,14 @@
 
       <div class="input__box">
         <button
+          v-if="this.getLoginStatus === 'LOGIN_PROCESSING'"
+          class="btn btn__disable"
+          disabled
+        >
+          <div class="loader"></div>
+        </button>
+        <button
+          v-else
           v-bind:class="btnDisable ? 'btn btn__disable' : 'btn btn__active'"
           :disabled="btnDisable"
           type="submit"
@@ -85,6 +93,7 @@ export default {
     // triggers when the form is submitted
     onLoginPressed(e) {
       e.preventDefault();
+      this.updateLoginStatus("LOGIN_PROCESSING");
       this.checkLogin({
         usernameEmail: this.usernameEmailInput,
         password: this.passwordInput,
@@ -99,5 +108,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/sass/_components.scss";
 @import "@/assets/sass/_form.scss";
 </style>

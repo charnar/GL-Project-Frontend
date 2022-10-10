@@ -55,6 +55,14 @@
 
       <div class="input__box">
         <button
+          v-if="this.getRegisterStatus === 'REGISTER_PROCESSING'"
+          class="btn btn__disable"
+          disabled
+        >
+          <div class="loader"></div>
+        </button>
+        <button
+          v-else
           v-bind:class="btnDisable ? 'btn btn__disable' : 'btn btn__active'"
           :disabled="btnDisable"
           type="submit"
@@ -97,6 +105,7 @@ export default {
     // triggers when the form is submitted
     onRegisterSubmit(e) {
       e.preventDefault();
+      this.updateRegisterStatus("REGISTER_PROCESSING");
       this.checkRegistration({
         username: this.usernameInput,
         email: this.emailInput,
@@ -117,4 +126,5 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/sass/_form.scss";
+@import "@/assets/sass/_components.scss";
 </style>

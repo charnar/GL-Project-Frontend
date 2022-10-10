@@ -16,6 +16,7 @@ const getLibraryNames = (games) => {
   return cleanLibraryString(libraryNames);
 };
 
+// Game search function is here (optimize later for string cleaning and stuff)
 export const searchGameLibrary = (games, searchVal) => {
   const searchedGames = games.filter(({ game_name }) =>
     game_name.toLowerCase().includes(searchVal.toLowerCase())

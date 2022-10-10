@@ -4,7 +4,6 @@ import DashboardView from "@/views/DashboardView";
 import RegisterView from "@/views/RegisterView";
 import HomeView from "@/views/HomeView";
 import AboutView from "@/views/AboutView";
-
 import store from "../store/index.js";
 
 const routes = [
