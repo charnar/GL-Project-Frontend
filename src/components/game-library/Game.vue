@@ -23,7 +23,13 @@ export default {
   background: #21242d;
   width: 26rem;
   border-radius: 10px;
+  transition: transform 0.2s;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  &:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+  }
 }
 
 .game__image {

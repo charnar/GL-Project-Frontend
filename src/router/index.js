@@ -23,14 +23,6 @@ const routes = [
         component: AboutView,
       },
     ],
-    beforeEnter: (to, from, next) => {
-      // if the user is not authenticated or their session has expired
-      if (!store.state.isAuthenticated) {
-        next("/login"); // go to login page
-      } else {
-        next();
-      }
-    },
   },
 
   {
@@ -49,6 +41,20 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach(async (to, from, next) => {
+  // if the user is not authenticated or their session has expired
+  console.log(to);
+  if (
+    !store.state.isAuthenticated &&
+    to.name !== "Login" &&
+    to.name !== "Register"
+  ) {
+    next("/login"); // go to login page
+  } else {
+    next();
+  }
 });
 
 export default router;

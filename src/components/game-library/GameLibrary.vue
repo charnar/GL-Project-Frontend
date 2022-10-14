@@ -96,14 +96,12 @@ $width: 260px;
   margin: 0 auto;
 
   .game__library__grid {
-    width: 100%;
+    width: auto;
     margin-top: 3rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax($width, 1fr));
-    justify-items: center;
+    grid-template-columns: repeat(auto-fill, $width);
     margin: 2rem auto;
-    column-gap: 2rem;
-    row-gap: 4rem;
+    gap: 2rem;
   }
 }
 </style>
