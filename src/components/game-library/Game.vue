@@ -1,5 +1,5 @@
 <template>
-  <div class="game__card">
+  <div :data-game-id="gameInfo.game_id" class="game__card" @click="onGameClick">
     <div class="game__image">
       <img :src="gameInfo.picture_url" />
     </div>
@@ -15,6 +15,12 @@
 export default {
   name: "Game",
   props: ["gameInfo"],
+
+  methods: {
+    onGameClick(e) {
+      console.log(e);
+    },
+  },
 };
 </script>
 

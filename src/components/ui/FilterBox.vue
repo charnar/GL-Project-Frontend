@@ -1,10 +1,4 @@
-<template>
-  <select name="" id="" @change="onChange">
-    <option v-for="option in options" :key="option">
-      {{ option }}
-    </option>
-  </select>
-</template>
+<template></template>
 
 <script>
 export default {
@@ -19,9 +13,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-select {
-  height: 4rem;
-  padding: 0 1rem;
-  border-radius: 0.5rem;
-}
+// @include mixin.gradient-bg(
+//   0.25turn,
+//   color.$btn-gradient-active-start,
+//   color.$btn-gradient-active-end
+// );
 </style>
