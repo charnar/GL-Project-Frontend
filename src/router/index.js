@@ -1,26 +1,21 @@
 import { createRouter, createWebHistory } from "vue-router";
-import LoginView from "@/views/LoginView";
-import DashboardView from "@/views/DashboardView";
-import RegisterView from "@/views/RegisterView";
-import HomeView from "@/views/HomeView";
-import AboutView from "@/views/AboutView";
 import store from "../store/index.js";
 
 const routes = [
   {
     path: "/",
     name: "Dashboard",
-    component: DashboardView,
+    component: () => import("@/views/DashboardView"),
     children: [
       {
         path: "",
         name: "Home",
-        component: HomeView,
+        component: () => import("@/views/HomeView"),
       },
       {
         path: "about",
         name: "AboutView",
-        component: AboutView,
+        component: () => import("@/views/AboutView"),
       },
     ],
   },
@@ -28,13 +23,13 @@ const routes = [
   {
     path: "/login",
     name: "Login",
-    component: LoginView,
+    component: () => import("@/views/LoginView"),
   },
 
   {
     path: "/register",
     name: "Register",
-    component: RegisterView,
+    component: () => import("@/views/RegisterView"),
   },
 ];
 

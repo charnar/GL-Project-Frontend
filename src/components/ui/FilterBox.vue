@@ -18,4 +18,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+select {
+  height: 4rem;
+  padding: 0 1rem;
+  border-radius: 0.5rem;
+}
+</style>

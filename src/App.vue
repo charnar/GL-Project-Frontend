@@ -1,7 +1,7 @@
 <template>
   <router-view v-slot="{ Component }">
     <transition name="fade" mode="out-in">
-      <component :is="Component" :key="$route.path"></component>
+      <component :is="Component"></component>
     </transition>
   </router-view>
 </template>
@@ -48,5 +48,15 @@ body {
     color.$bg-gradient-start,
     color.$bg-gradient-end
   );
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

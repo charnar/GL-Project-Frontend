@@ -5,12 +5,17 @@
       :handler="this.onSearchChange"
     ></SearchBox>
     <!-- Render only if user linked more than 1 library -->
-    <LibraryBar
-      v-if="this.getGameLibraries.length > 2"
-      :libraries="this.getGameLibraries"
-      :handler="this.onLibraryChange"
-      :currentLibrary="this.getLibraryFilter"
-    ></LibraryBar>
+
+    <div class="filter__bar">
+      <LibraryBar
+        v-if="this.getGameLibraries.length > 2"
+        :libraries="this.getGameLibraries"
+        :handler="this.onLibraryChange"
+        :currentLibrary="this.getLibraryFilter"
+      ></LibraryBar>
+
+      <FilterBox :options="this.filters"></FilterBox>
+    </div>
 
     <div class="game__library__grid">
       <Game
@@ -26,17 +31,18 @@
 import Game from "./Game";
 import axios from "axios";
 import { mapGetters, mapActions } from "vuex";
-// import FilterBox from "../ui/FilterBox";
+import FilterBox from "../ui/FilterBox";
 import LibraryBar from "./LibraryBar";
 import SearchBox from "../ui/SearchBox";
 import { getLibraryGames } from "@/helper.js";
 import { JSON_API_URL } from "@/configs"; // replace later with response from backend
 export default {
   name: "GameLibrary",
-  components: { Game, LibraryBar, SearchBox },
+  components: { Game, LibraryBar, SearchBox, FilterBox },
   data() {
     return {
       games: [],
+      filters: ["A-Z", "Favorites", "Date purchased", "Recently played"],
     };
   },
 
@@ -92,7 +98,7 @@ $width: 260px;
 
 .library__section {
   padding: 2rem 4rem;
-  max-width: $width * 6;
+  max-width: $width * 8;
   margin: 0 auto;
 
   .game__library__grid {
@@ -102,6 +108,11 @@ $width: 260px;
     grid-template-columns: repeat(auto-fill, $width);
     margin: 2rem auto;
     gap: 2rem;
+  }
+
+  .filter__bar {
+    display: flex;
+    justify-content: space-between;
   }
 }
 </style>
