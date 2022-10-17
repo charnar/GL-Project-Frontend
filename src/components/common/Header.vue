@@ -21,15 +21,19 @@
     </nav>
 
     <span class="profile__logo">
-      <img src="@/assets/img/vue_logo.png" alt="" />
+      <img :src="this.getProfilePicture" alt="" />
     </span>
   </header>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Header",
+
+  computed: {
+    ...mapGetters(["getProfilePicture"]),
+  },
 
   methods: {
     ...mapActions(["logoutUser"]),
@@ -56,13 +60,15 @@ header {
 
 .profile__logo {
   background: color.$profile-icon-bg;
+  width: 5.6rem;
   height: 5.6rem;
   border-radius: 100%;
-  padding: 1.2rem;
   overflow: hidden;
 
   img {
-    height: 100%;
+    width: 100%;
+    height: inherit;
+    object-fit: cover;
   }
 }
 

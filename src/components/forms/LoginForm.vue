@@ -93,6 +93,7 @@ export default {
     // triggers when the form is submitted
     onLoginPressed(e) {
       e.preventDefault();
+      document.activeElement.blur();
       this.updateLoginStatus("LOGIN_PROCESSING");
       this.checkLogin({
         usernameEmail: this.usernameEmailInput,

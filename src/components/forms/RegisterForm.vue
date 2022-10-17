@@ -105,6 +105,7 @@ export default {
     // triggers when the form is submitted
     onRegisterSubmit(e) {
       e.preventDefault();
+      document.activeElement.blur();
       this.updateRegisterStatus("REGISTER_PROCESSING");
       this.checkRegistration({
         username: this.usernameInput,

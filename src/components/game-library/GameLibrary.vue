@@ -94,11 +94,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$width: 260px;
+$width: 240px;
 
 .library__section {
   padding: 2rem 4rem;
-  max-width: $width * 8;
+  max-width: $width * 6;
   margin: 0 auto;
 
   .game__library__grid {

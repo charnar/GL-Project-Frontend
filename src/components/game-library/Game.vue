@@ -5,7 +5,16 @@
     </div>
 
     <div class="game__info">
-      <h1>{{ gameInfo.game_name }}</h1>
+      <div class="game__heading">
+        <h1>{{ gameInfo.game_name }}</h1>
+        <span>
+          <font-awesome-icon
+            :class="{ favorite__active: gameInfo.favorite }"
+            icon="fa-solid fa-heart"
+          />
+        </span>
+      </div>
+
       <p>{{ gameInfo.game_description }}</p>
     </div>
   </div>
@@ -26,8 +35,7 @@ export default {
 
 <style lang="scss" scoped>
 .game__card {
-  background: #21242d;
-  width: 26rem;
+  background: color.$game-card;
   border-radius: 10px;
   transition: transform 0.2s;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -36,6 +44,23 @@ export default {
     transform: scale(1.05);
     cursor: pointer;
   }
+}
+
+.game__heading {
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    color: color.$font-inactive;
+
+    &:hover {
+      transform: scale(1.25);
+    }
+  }
+}
+
+.favorite__active {
+  color: color.$font-error;
 }
 
 .game__image {
@@ -52,9 +77,17 @@ export default {
 
 .game__info {
   padding: 2rem 1.4rem;
-  h1 {
+  h1,
+  .game__heading > span {
     font-size: 2rem;
     font-weight: 500;
+  }
+
+  h1 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-right: 0.4rem;
   }
 
   p {

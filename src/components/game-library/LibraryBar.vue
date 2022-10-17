@@ -31,7 +31,7 @@ export default {
 .library__button {
   background: transparent;
   color: color.$font-inactive;
-  margin: 0 2.6rem;
+  margin: 0 2rem;
   font-size: 1.6rem;
   border-bottom: 1px solid transparent;
   transition: all 0.2s;

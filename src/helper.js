@@ -1,3 +1,4 @@
+// Converts ENUMERATORS into capitalized strings
 const cleanLibraryString = (libraryNames) => {
   const cleanedLibraryNames = libraryNames.map(
     (lib) => lib.charAt(0) + lib.slice(1).toLowerCase()
@@ -6,6 +7,7 @@ const cleanLibraryString = (libraryNames) => {
   return cleanedLibraryNames;
 };
 
+// Gets the library names the user has
 const getLibraryNames = (games) => {
   const libraryNames = ["ALL"];
   games.forEach((game) => {
@@ -16,7 +18,7 @@ const getLibraryNames = (games) => {
   return cleanLibraryString(libraryNames);
 };
 
-// Game search function is here (optimize later for string cleaning and stuff)
+// For searching games in game library
 export const searchGameLibrary = (games, searchVal) => {
   const searchedGames = games.filter(({ game_name }) =>
     game_name.toLowerCase().includes(searchVal.toLowerCase())
@@ -25,9 +27,9 @@ export const searchGameLibrary = (games, searchVal) => {
   return searchedGames;
 };
 
+// Processes the library games fetched from backend
 export const getLibraryGames = (userLibrary) => {
   const { games } = userLibrary;
-  // get library names
   const libraryNames = getLibraryNames(games);
 
   return [libraryNames, games];

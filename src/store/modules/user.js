@@ -1,13 +1,18 @@
 const defaultUserState = () => {
   return {
     username: "",
-    profilePicture: "",
+    profilePicture:
+      "https://webneel.com/daily/sites/default/files/images/daily/07-2020/13-funny-3d-cartoon-character-teddy-man-fernando-parra.jpg",
   };
 };
 
 const state = defaultUserState();
 
-const getters = {};
+const getters = {
+  getProfilePicture(state) {
+    return state.profilePicture;
+  },
+};
 
 const actions = {};
 
