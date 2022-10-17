@@ -7,7 +7,7 @@
     <div class="game__info">
       <div class="game__heading">
         <h1>{{ gameInfo.game_name }}</h1>
-        <span>
+        <span class="favorite__btn">
           <font-awesome-icon
             :class="{ favorite__active: gameInfo.favorite }"
             icon="fa-solid fa-heart"
@@ -26,8 +26,14 @@ export default {
   props: ["gameInfo"],
 
   methods: {
+    async toggleFavorites() {
+      // 1. Send a PUT Request to update favorite status
+      // 2. Update favorite status on UI
+    },
     onGameClick(e) {
-      console.log(e);
+      if (e.target.parentElement.closest(".favorite__btn"))
+        this.toggleFavorites();
+      else this.$router.push(`/game/${this.$el.getAttribute("data-game-id")}`);
     },
   },
 };
