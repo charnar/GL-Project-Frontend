@@ -13,9 +13,14 @@ const routes = [
         component: () => import("@/views/HomeView"),
       },
       {
-        path: "about",
+        path: "/about",
         name: "AboutView",
         component: () => import("@/views/AboutView"),
+      },
+      {
+        path: "/game/:id",
+        name: "GameView",
+        component: () => import("@/views/GameView"),
       },
     ],
   },
@@ -39,8 +44,7 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-  // if the user is not authenticated or their session has expired
-  console.log(to);
+  // check if user is not authenticated or their session has expired
   if (
     !store.state.isAuthenticated &&
     to.name !== "Login" &&
