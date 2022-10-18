@@ -28,9 +28,12 @@ export const searchGameLibrary = (games, searchVal) => {
 };
 
 // Processes the library games fetched from backend
-export const getLibraryGames = (userLibrary) => {
+export const processLibraryGames = (userLibrary) => {
   const { games } = userLibrary;
   const libraryNames = getLibraryNames(games);
 
   return [libraryNames, games];
 };
+
+// Processes the library games to be displayed
+export const processLibraryDisplay = (userLibrary, page) => {};

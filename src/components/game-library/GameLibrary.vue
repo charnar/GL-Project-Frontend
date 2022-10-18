@@ -24,6 +24,12 @@
         :gameInfo="game"
       ></Game>
     </div>
+
+    <PageBar
+      :currentPage="this.getCurrentPage"
+      :numPages="this.getNumPages"
+      :handler="this.onPageChange"
+    ></PageBar>
   </section>
 </template>
 
@@ -34,11 +40,12 @@ import { mapGetters, mapActions } from "vuex";
 import FilterBox from "../ui/FilterBox";
 import LibraryBar from "./LibraryBar";
 import SearchBox from "../ui/SearchBox";
-import { getLibraryGames } from "@/helper.js";
+import PageBar from "./PageBar";
+import { processLibraryGames } from "@/helper.js";
 import { JSON_API_URL } from "@/configs"; // replace later with response from backend
 export default {
   name: "GameLibrary",
-  components: { Game, LibraryBar, SearchBox, FilterBox },
+  components: { Game, LibraryBar, SearchBox, FilterBox, PageBar },
   data() {
     return {
       games: [],
@@ -52,6 +59,8 @@ export default {
       "getSearchValue",
       "getGameLibraries",
       "getDisplayGames",
+      "getCurrentPage",
+      "getNumPages",
     ]),
   },
 
@@ -62,6 +71,7 @@ export default {
       "updateGames",
       "updateGameLibraries",
       "updateDisplayGames",
+      "updateCurrentPage",
     ]),
     onLibraryChange(libraryName) {
       this.updateLibraryFilter(libraryName);
@@ -71,16 +81,19 @@ export default {
       this.updateSearchValue(searchVal);
     },
 
+    onPageChange(page) {
+      this.updateCurrentPage(page);
+    },
+
     async fetchAllGames() {
       try {
         const libraryGames = await axios.get(
           `${JSON_API_URL}/all-library-games` // replace this later
         );
 
-        const [gameLibraries, games] = getLibraryGames(libraryGames.data);
+        const [gameLibraries, games] = processLibraryGames(libraryGames.data);
         this.updateGameLibraries(gameLibraries);
         this.updateGames(games);
-        this.updateDisplayGames(games);
       } catch (err) {
         console.log(err);
       }
