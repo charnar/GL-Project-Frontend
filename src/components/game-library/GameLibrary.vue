@@ -1,12 +1,16 @@
 <template>
   <section class="library__section">
-    <SearchBox
-      :currentSearch="this.getSearchValue"
-      :handler="this.onSearchChange"
-    ></SearchBox>
-    <!-- Render only if user linked more than 1 library -->
+    <div class="top__filter__bar">
+      <SearchBox
+        :currentSearch="this.getSearchValue"
+        :handler="this.onSearchChange"
+      ></SearchBox>
 
-    <div class="filter__bar">
+      <ButtonRefresh :handler="this.onRefreshClick"></ButtonRefresh>
+    </div>
+
+    <div class="bottom__filter__bar">
+      <!-- Render only if user linked more than 1 library -->
       <LibraryBar
         v-if="this.getGameLibraries.length > 2"
         :libraries="this.getGameLibraries"
@@ -35,21 +39,28 @@
 
 <script>
 import Game from "./Game";
-import axios from "axios";
 import { mapGetters, mapActions } from "vuex";
 import FilterBox from "../ui/FilterBox";
 import LibraryBar from "./LibraryBar";
 import SearchBox from "../ui/SearchBox";
 import PageBar from "./PageBar";
-import { processLibraryGames } from "@/helper.js";
-import { JSON_API_URL } from "@/configs"; // replace later with response from backend
+import ButtonRefresh from "../ui/ButtonRefresh";
+
 export default {
   name: "GameLibrary",
-  components: { Game, LibraryBar, SearchBox, FilterBox, PageBar },
+  components: {
+    Game,
+    LibraryBar,
+    SearchBox,
+    FilterBox,
+    PageBar,
+    ButtonRefresh,
+  },
   data() {
     return {
       games: [],
       filters: ["A-Z", "Favorites", "Date purchased", "Recently played"],
+      spinFlag: false,
     };
   },
 
@@ -70,7 +81,6 @@ export default {
       "updateSearchValue",
       "updateGames",
       "updateGameLibraries",
-      "updateDisplayGames",
       "updateCurrentPage",
     ]),
     onLibraryChange(libraryName) {
@@ -85,23 +95,25 @@ export default {
       this.updateCurrentPage(page);
     },
 
-    async fetchAllGames() {
+    async onRefreshClick() {
       try {
-        const libraryGames = await axios.get(
-          `${JSON_API_URL}/all-library-games` // replace this later
-        );
-
-        const [gameLibraries, games] = processLibraryGames(libraryGames.data);
-        this.updateGameLibraries(gameLibraries);
-        this.updateGames(games);
+        await this.updateGames();
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     },
   },
 
   async mounted() {
-    await this.fetchAllGames();
+    try {
+      this.spinFlag = true;
+      await this.updateGames();
+
+      this.spinFlag = false;
+    } catch (err) {
+      console.error(err);
+      this.spinFlag = false;
+    }
   },
 };
 </script>
@@ -111,7 +123,7 @@ $width: 240px;
 
 .library__section {
   padding: 2rem 4rem;
-  max-width: $width * 6;
+  max-width: ($width * 6) + (30px * 6);
   margin: 0 auto;
 
   .game__library__grid {
@@ -123,9 +135,10 @@ $width: 240px;
     gap: 2rem;
   }
 
-  .filter__bar {
+  .top__filter__bar,
+  .bottom__filter__bar {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
   }
 }
 </style>

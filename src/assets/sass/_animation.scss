@@ -5,3 +5,20 @@
   -o-transition: $component $time $effect;
   transition: $component $time $effect;
 }
+
+@mixin spinComponent($time) {
+  animation-name: spin;
+  animation-duration: $time;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

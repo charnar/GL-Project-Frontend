@@ -25,6 +25,10 @@ export default createStore({
     getAuthentication(state) {
       return state.isAuthenticated;
     },
+
+    getSessionID(state) {
+      return state.sessionID;
+    },
   },
   mutations: {
     setAuthenticate(state) {

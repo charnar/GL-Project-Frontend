@@ -21,7 +21,7 @@ export default {
     },
   },
 
-  async beforeMount() {
+  async mount() {
     await this.fetchGameInfo();
   },
 };

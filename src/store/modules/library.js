@@ -1,6 +1,6 @@
+import { searchGameLibrary, retrieveLibraryNames } from "@/helper";
+import { GAMES_PER_PAGE, JSON_API_URL } from "@/configs";
 import axios from "axios";
-import { searchGameLibrary } from "@/helper";
-import { GAMES_PER_PAGE } from "@/configs";
 
 const defaultLibraryState = () => {
   return {
@@ -56,9 +56,27 @@ const actions = {
     commit("setLibraryFilter", filter);
   },
 
-  updateGames({ commit, dispatch }, library) {
-    commit("setGames", library);
-    dispatch("updateDisplayGames", library);
+  async updateGames({ commit, dispatch, getters }) {
+    try {
+      // 1. Fetch user's game library from backend
+      const response = await axios.post(`${JSON_API_URL}/all-library-games`, {
+        session_id: getters.getSessionID,
+      });
+
+      const { sessionStatus, games } = response.data;
+
+      // 2. Retrieve library names from list of user's games
+      const userGameLibraries = retrieveLibraryNames(games);
+
+      // 3. Set the game libraries and games state
+      commit("setGameLibraries", userGameLibraries);
+      commit("setGames", games);
+
+      // 4. Update the displayed library games
+      dispatch("updateDisplayGames", games);
+    } catch (err) {
+      throw Error("Something went wrong");
+    }
   },
 
   updateCurrentPage({ commit, dispatch, getters }, page) {

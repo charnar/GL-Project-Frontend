@@ -4,8 +4,8 @@
       spellcheck="false"
       autocomplete="off"
       type="text"
-      @blur="handleSearch"
       :value="currentSearch"
+      @keyup="searchTimeOut"
     />
     <span
       ><font-awesome-icon icon="fa-solid fa-magnifying-glass" /> Search</span
@@ -14,13 +14,21 @@
 </template>
 
 <script>
+import { TIMEOUT_SEARCH } from "@/configs";
 export default {
   name: "SearchBox",
   props: ["currentSearch", "handler"],
 
   methods: {
-    handleSearch(e) {
-      this.handler && this.handler(e.target.value);
+    searchTimeOut(e) {
+      if (this.timer) {
+        clearTimeout(this.timer);
+        this.timer = null;
+      }
+
+      this.timer = setTimeout(() => {
+        this.handler && this.handler(e.target.value);
+      }, TIMEOUT_SEARCH);
     },
   },
 };

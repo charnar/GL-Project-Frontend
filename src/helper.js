@@ -7,17 +7,6 @@ const cleanLibraryString = (libraryNames) => {
   return cleanedLibraryNames;
 };
 
-// Gets the library names the user has
-const getLibraryNames = (games) => {
-  const libraryNames = ["ALL"];
-  games.forEach((game) => {
-    if (!libraryNames.includes(game.library_name))
-      libraryNames.push(game.library_name);
-  });
-
-  return cleanLibraryString(libraryNames);
-};
-
 // For searching games in game library
 export const searchGameLibrary = (games, searchVal) => {
   const searchedGames = games.filter(({ game_name }) =>
@@ -27,13 +16,13 @@ export const searchGameLibrary = (games, searchVal) => {
   return searchedGames;
 };
 
-// Processes the library games fetched from backend
-export const processLibraryGames = (userLibrary) => {
-  const { games } = userLibrary;
-  const libraryNames = getLibraryNames(games);
+// Gets the library names the user has
+export const retrieveLibraryNames = (games) => {
+  const libraryNames = ["ALL"];
+  games.forEach((game) => {
+    if (!libraryNames.includes(game.library_name))
+      libraryNames.push(game.library_name);
+  });
 
-  return [libraryNames, games];
+  return cleanLibraryString(libraryNames);
 };
-
-// Processes the library games to be displayed
-export const processLibraryDisplay = (userLibrary, page) => {};

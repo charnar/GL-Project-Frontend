@@ -14,6 +14,7 @@
         <li>
           <router-link to="/about">About</router-link>
         </li>
+
         <li>
           <a @click="logoutUser">Logout</a>
         </li>
