@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header></Header>
+    <TheHeader></TheHeader>
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
         <component :is="Component"></component>
@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import Header from "@/components/common/Header.vue";
+import TheHeader from "@/components/common/TheHeader";
 export default {
   name: "DashboardView",
-  components: { Header },
+  components: { TheHeader },
 };
 </script>
 

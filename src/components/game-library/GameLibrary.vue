@@ -12,7 +12,7 @@
     <div class="bottom__filter__bar">
       <!-- Render only if user linked more than 1 library -->
       <LibraryBar
-        v-if="this.getGameLibraries.length > 2"
+        v-if="this.getGameLibraries.length > 2 && !this.loadingFlag"
         :libraries="this.getGameLibraries"
         :handler="this.onLibraryChange"
         :currentLibrary="this.getLibraryFilter"
@@ -21,7 +21,8 @@
       <FilterBox :options="this.filters"></FilterBox>
     </div>
 
-    <div class="game__library__grid">
+    <LoadingSpinner v-if="this.loadingFlag"></LoadingSpinner>
+    <div v-else class="game__library__grid">
       <Game
         v-for="game in this.getDisplayGames"
         :key="game"
@@ -30,6 +31,7 @@
     </div>
 
     <PageBar
+      v-if="!this.loadingFlag"
       :currentPage="this.getCurrentPage"
       :numPages="this.getNumPages"
       :handler="this.onPageChange"
@@ -45,6 +47,7 @@ import LibraryBar from "./LibraryBar";
 import SearchBox from "../ui/SearchBox";
 import PageBar from "./PageBar";
 import ButtonRefresh from "../ui/ButtonRefresh";
+import LoadingSpinner from "../ui/LoadingSpinner";
 
 export default {
   name: "GameLibrary",
@@ -55,12 +58,13 @@ export default {
     FilterBox,
     PageBar,
     ButtonRefresh,
+    LoadingSpinner,
   },
   data() {
     return {
       games: [],
       filters: ["A-Z", "Favorites", "Date purchased", "Recently played"],
-      spinFlag: false,
+      loadingFlag: true,
     };
   },
 
@@ -106,13 +110,11 @@ export default {
 
   async mounted() {
     try {
-      this.spinFlag = true;
       await this.updateGames();
-
-      this.spinFlag = false;
+      this.loadingFlag = false;
     } catch (err) {
       console.error(err);
-      this.spinFlag = false;
+      this.loadingFlag = false;
     }
   },
 };
