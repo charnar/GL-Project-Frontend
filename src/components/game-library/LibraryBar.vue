@@ -3,12 +3,13 @@
     <button
       class="library__button"
       v-for="library in libraries"
-      :key="library"
+      :key="library.name"
       :class="{
-        library__button__active: currentLibrary === library,
+        library__button__active: currentLibrary === library.name,
       }"
+      :data-library-id="library.id"
     >
-      {{ library }}
+      {{ library.name }}
     </button>
   </div>
 </template>
@@ -20,7 +21,8 @@ export default {
   methods: {
     onClick(e) {
       if (e.target.classList.contains("library__button")) {
-        this.handler && this.handler(e.target.innerText);
+        this.handler &&
+          this.handler(e.target.innerText, e.target.dataset.libraryId);
       }
     },
   },

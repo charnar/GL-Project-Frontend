@@ -1,4 +1,8 @@
-import { searchGameLibrary, retrieveLibraryNames } from "@/helper";
+import {
+  searchGameLibrary,
+  retrieveLibraryNames,
+  axiosPostRequest,
+} from "@/helper";
 import { GAMES_PER_PAGE, JSON_API_URL } from "@/configs";
 import axios from "axios";
 
@@ -52,24 +56,41 @@ const getters = {
 };
 
 const actions = {
-  updateLibraryFilter({ commit }, filter) {
+  updateLibraryFilter({ commit, dispatch }, filter) {
     commit("setLibraryFilter", filter);
+    dispatch("updateGames");
   },
 
-  async updateGames({ commit, dispatch, getters }) {
+  async updateGames({ commit, dispatch, getters, state }) {
     try {
       // 1. Fetch user's game library from backend
-      const response = await axios.post(`${JSON_API_URL}/all-library-games`, {
-        session_id: getters.getSessionID,
-      });
+      let response;
+      const libraryName = getters.getLibraryFilter;
+
+      if (libraryName === "All") {
+        response = await axios.post(`${JSON_API_URL}/all-library-games`, {
+          session_id: getters.getSessionID,
+        });
+      } else {
+        const gameLibraries = getters.getGameLibraries;
+        const { id: libraryID } = gameLibraries.find(
+          (lib) => lib.name === libraryName
+        );
+        response = await axiosPostRequest(`${JSON_API_URL}/library-games`, {
+          session_id: getters.getSessionID,
+          library_id: libraryID,
+        });
+      }
 
       const { sessionStatus, games } = response.data;
 
-      // 2. Retrieve library names from list of user's games
-      const userGameLibraries = retrieveLibraryNames(games);
+      if (libraryName === "All") {
+        const userGameLibraries = retrieveLibraryNames(games);
+        commit("setGameLibraries", userGameLibraries);
+      } else {
+        commit("setCurrentPage", 1);
+      }
 
-      // 3. Set the game libraries and games state
-      commit("setGameLibraries", userGameLibraries);
       commit("setGames", games);
 
       // 4. Update the displayed library games

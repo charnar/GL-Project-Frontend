@@ -79,7 +79,7 @@ export default {
       "updateGameLibraries",
       "updateCurrentPage",
     ]),
-    onLibraryChange(libraryName) {
+    onLibraryChange(libraryName, libraryID) {
       this.updateLibraryFilter(libraryName);
     },
 

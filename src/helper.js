@@ -1,13 +1,8 @@
 import axios from "axios";
 
 // Converts ENUMERATORS into capitalized strings
-const cleanLibraryString = (libraryNames) => {
-  const cleanedLibraryNames = libraryNames.map(
-    (lib) => lib.charAt(0) + lib.slice(1).toLowerCase()
-  );
-
-  return cleanedLibraryNames;
-};
+const cleanLibraryString = (libString) =>
+  libString.charAt(0) + libString.slice(1).toLowerCase();
 
 // For searching games in game library
 export const searchGameLibrary = (games, searchVal) => {
@@ -20,13 +15,19 @@ export const searchGameLibrary = (games, searchVal) => {
 
 // Gets the library names the user has
 export const retrieveLibraryNames = (games) => {
-  const libraryNames = ["ALL"];
-  games.forEach((game) => {
-    if (!libraryNames.includes(game.library_name))
-      libraryNames.push(game.library_name);
-  });
+  const userLibraries = [{ name: "All" }];
+  games.forEach((game) =>
+    userLibraries.push({
+      name: cleanLibraryString(game.library_name),
+      id: game.library_id,
+    })
+  );
 
-  return cleanLibraryString(libraryNames);
+  const uniqueUserLibraries = [
+    ...new Map(userLibraries.map((item) => [item["name"], item])).values(),
+  ];
+
+  return uniqueUserLibraries;
 };
 
 // Timeout promise for fetching api
