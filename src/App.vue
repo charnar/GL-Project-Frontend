@@ -18,6 +18,7 @@
 <script>
 import { mapGetters } from "vuex";
 import PopupMessage from "./components/common/PopupMessage";
+
 export default {
   name: "App",
   components: { PopupMessage },

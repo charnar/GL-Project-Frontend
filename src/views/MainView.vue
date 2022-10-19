@@ -12,7 +12,7 @@
 <script>
 import TheHeader from "@/components/common/TheHeader";
 export default {
-  name: "DashboardView",
+  name: "MainView",
   components: { TheHeader },
 };
 </script>

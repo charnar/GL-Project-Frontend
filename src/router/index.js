@@ -4,23 +4,23 @@ import store from "../store/index.js";
 const routes = [
   {
     path: "/",
-    name: "Dashboard",
-    component: () => import("@/views/DashboardView"),
+    name: "Main",
+    component: () => import("@/views/MainView"),
     children: [
       {
         path: "",
         name: "Home",
-        component: () => import("@/views/HomeView"),
+        component: () => import("@/views/main-child/HomeView"),
       },
       {
         path: "/about",
         name: "AboutView",
-        component: () => import("@/views/AboutView"),
+        component: () => import("@/views/main-child/AboutView"),
       },
       {
         path: "/game/:id",
         name: "GameView",
-        component: () => import("@/views/GameView"),
+        component: () => import("@/views/main-child/GameView"),
       },
     ],
   },

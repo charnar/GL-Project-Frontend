@@ -12,7 +12,7 @@
     <div class="bottom__filter__bar">
       <!-- Render only if user linked more than 1 library -->
       <LibraryBar
-        v-if="this.getGameLibraries.length > 2 && !this.loadingFlag"
+        v-if="this.getGameLibraries.length > 2"
         :libraries="this.getGameLibraries"
         :handler="this.onLibraryChange"
         :currentLibrary="this.getLibraryFilter"
@@ -21,17 +21,10 @@
       <FilterBox :options="this.filters"></FilterBox>
     </div>
 
-    <LoadingSpinner v-if="this.loadingFlag"></LoadingSpinner>
-    <div v-else class="game__library__grid">
-      <Game
-        v-for="game in this.getDisplayGames"
-        :key="game"
-        :gameInfo="game"
-      ></Game>
-    </div>
+    <LibraryGrid :libraryGames="this.getDisplayGames"></LibraryGrid>
 
     <PageBar
-      v-if="!this.loadingFlag"
+      v-if="this.getNumPages > 1"
       :currentPage="this.getCurrentPage"
       :numPages="this.getNumPages"
       :handler="this.onPageChange"
@@ -40,25 +33,24 @@
 </template>
 
 <script>
-import Game from "./Game";
-import { mapGetters, mapActions } from "vuex";
+import LibraryGrid from "./LibraryGrid";
 import FilterBox from "../ui/FilterBox";
 import LibraryBar from "./LibraryBar";
 import SearchBox from "../ui/SearchBox";
 import PageBar from "./PageBar";
 import ButtonRefresh from "../ui/ButtonRefresh";
-import LoadingSpinner from "../ui/LoadingSpinner";
+
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "GameLibrary",
   components: {
-    Game,
     LibraryBar,
     SearchBox,
     FilterBox,
     PageBar,
     ButtonRefresh,
-    LoadingSpinner,
+    LibraryGrid,
   },
   data() {
     return {
@@ -106,16 +98,6 @@ export default {
         console.error(err);
       }
     },
-  },
-
-  async mounted() {
-    try {
-      await this.updateGames();
-      this.loadingFlag = false;
-    } catch (err) {
-      console.error(err);
-      this.loadingFlag = false;
-    }
   },
 };
 </script>
