@@ -1,3 +1,5 @@
+import axios from "axios";
+
 // Converts ENUMERATORS into capitalized strings
 const cleanLibraryString = (libraryNames) => {
   const cleanedLibraryNames = libraryNames.map(
@@ -25,4 +27,20 @@ export const retrieveLibraryNames = (games) => {
   });
 
   return cleanLibraryString(libraryNames);
+};
+
+// Timeout promise for fetching api
+export const rejectPromiseTimeout = (timeout) => {
+  return new Promise((res, rej) => {
+    setTimeout(
+      rej,
+      timeout,
+      "Your request is taking too long. Please try again."
+    );
+  });
+};
+
+// Axios post call
+export const axiosPostRequest = (url, payload) => {
+  return axios.post(url, payload);
 };

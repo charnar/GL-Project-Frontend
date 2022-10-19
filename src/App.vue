@@ -1,15 +1,29 @@
 <template>
-  <router-view v-slot="{ Component }">
-    <transition name="fade" mode="out-in">
-      <component :is="Component"></component>
+  <div class="app__container">
+    <transition name="vPopupSlideTop">
+      <PopupMessage
+        v-if="this.getModalMessage"
+        :messageContent="this.getModalMessage"
+      ></PopupMessage>
     </transition>
-  </router-view>
+
+    <router-view v-slot="{ Component }">
+      <transition name="vfade" mode="out-in">
+        <component :is="Component"></component>
+      </transition>
+    </router-view>
+  </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import PopupMessage from "./components/common/PopupMessage";
 export default {
   name: "App",
-  methods: {},
+  components: { PopupMessage },
+  computed: {
+    ...mapGetters(["getModalMessage"]),
+  },
 };
 </script>
 
@@ -48,15 +62,5 @@ body {
     color.$bg-gradient-start,
     color.$bg-gradient-end
   );
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.25s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>

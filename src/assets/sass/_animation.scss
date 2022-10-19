@@ -6,7 +6,7 @@
   transition: $component $time $effect;
 }
 
-@mixin spinComponent($time) {
+@mixin spin-component($time) {
   animation-name: spin;
   animation-duration: $time;
   animation-iteration-count: infinite;
@@ -21,4 +21,24 @@
       transform: rotate(360deg);
     }
   }
+}
+
+.vfade-enter-active,
+.vfade-leave-active {
+  transition: opacity 0.25s ease;
+}
+
+.vfade-enter-from,
+.vfade-leave-to {
+  opacity: 0;
+}
+
+.vPopupSlideTop-enter-active,
+.vPopupSlideTop-leave-active {
+  transition: all 0.25s ease;
+}
+
+.vPopupSlideTop-enter-from,
+.vPopupSlideTop-leave-to {
+  transform: translateY(-100%);
 }

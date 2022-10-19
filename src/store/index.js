@@ -5,11 +5,13 @@ import registration from "./modules/registration.js";
 import login from "./modules/login.js";
 import user from "./modules/user.js";
 import library from "./modules/library";
+import { TIMEOUT_MODAL_MESSAGE } from "@/configs.js";
 
 const defaultIndexState = () => {
   return {
     isAuthenticated: false,
     sessionID: "",
+    modalMessage: null,
   };
 };
 
@@ -29,8 +31,16 @@ export default createStore({
     getSessionID(state) {
       return state.sessionID;
     },
+
+    getModalMessage(state) {
+      return state.modalMessage;
+    },
   },
   mutations: {
+    setModalMessage(state, message) {
+      state.modalMessage = message;
+    },
+
     setAuthenticate(state) {
       state.isAuthenticated = true;
     },
@@ -44,12 +54,31 @@ export default createStore({
     },
   },
   actions: {
+    // Global state reset
     async logoutUser({ commit }) {
       commit("resetState");
       commit("resetLoginState");
       commit("resetRegistrationState");
       commit("resetUserState");
+      commit("resetLibraryState");
       router.push("/login");
+    },
+
+    updateModalMessage({ commit, dispatch }, message) {
+      commit("setModalMessage", message);
+
+      // Reset timeout for modal message window
+      if (this.modalMessageTimer) {
+        clearTimeout(this.modalMessageTimer);
+        this.modalMessageTimer = null;
+      }
+
+      // Set timeout for modal message window
+      if (message)
+        this.modalMessageTimer = setTimeout(
+          () => dispatch("updateModalMessage", null),
+          TIMEOUT_MODAL_MESSAGE
+        );
     },
   },
   modules: {

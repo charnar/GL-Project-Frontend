@@ -13,7 +13,7 @@
           id="login-username-email"
           autocomplete="off"
           required
-          @click="resetStatus()"
+          @keyup="resetStatus()"
         />
         <span>{{
           this.getLoginStatus === "INVALID_USERNAME"
@@ -34,7 +34,7 @@
           id="login-passwd"
           autocomplete="off"
           required
-          @click="resetStatus()"
+          @keyup="resetStatus()"
         />
         <span>{{
           this.getLoginStatus === "INVALID_PASSWORD"
@@ -94,7 +94,7 @@ export default {
     onLoginPressed(e) {
       e.preventDefault();
       document.activeElement.blur();
-      this.updateLoginStatus("LOGIN_PROCESSING");
+
       this.checkLogin({
         usernameEmail: this.usernameEmailInput,
         password: this.passwordInput,

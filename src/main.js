@@ -12,10 +12,11 @@ import {
   faMagnifyingGlass,
   faHeart as faHeartSolid,
   faRotate,
+  faCircleXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
-library.add(faMagnifyingGlass, faHeartSolid, faRotate);
+library.add(faMagnifyingGlass, faHeartSolid, faRotate, faCircleXmark);
 
 createApp(App)
   .component("font-awesome-icon", FontAwesomeIcon)

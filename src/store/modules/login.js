@@ -1,7 +1,6 @@
-import { API_URL } from "@/configs.js";
-import axios from "axios";
+import { API_URL, TIMEOUT_API_CALL } from "@/configs.js";
+import { rejectPromiseTimeout, axiosPostRequest } from "@/helper";
 import router from "@/router/index.js";
-import store from "..";
 
 const defaultLoginState = () => {
   return {
@@ -18,13 +17,18 @@ const getters = {
 };
 
 const actions = {
-  async checkLogin({ commit }, loginInfo) {
+  async checkLogin({ commit, dispatch }, loginInfo) {
     try {
-      // condition to check login goes here
-      const response = await axios.post(`${API_URL}/login`, {
+      commit("setLoginStatus", "LOGIN_PROCESSING");
+      const inputData = {
         username_email: loginInfo.usernameEmail,
         password: loginInfo.password,
-      });
+      };
+
+      const response = await Promise.race([
+        axiosPostRequest(`${API_URL}/login`, inputData),
+        rejectPromiseTimeout(TIMEOUT_API_CALL),
+      ]);
 
       const { status, username, session_id } = response.data;
 
@@ -37,7 +41,9 @@ const actions = {
         router.push("/");
       }
     } catch (err) {
-      console.error(err);
+      commit("setLoginStatus", "NORMAL");
+      // console.error(err);
+      dispatch("updateModalMessage", err);
     }
   },
 

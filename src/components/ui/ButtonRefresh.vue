@@ -44,7 +44,7 @@ export default {
 
 .btn__animate {
   color: color.$font-active;
-  @include animation.spinComponent(600ms);
+  @include animation.spin-component(600ms);
 }
 
 .disabled {
