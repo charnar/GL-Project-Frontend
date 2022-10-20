@@ -17,4 +17,14 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+$width: 240px;
+.game__library__grid {
+  width: auto;
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, $width);
+  margin: 2rem auto;
+  gap: 2rem;
+}
+</style>

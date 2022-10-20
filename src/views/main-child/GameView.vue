@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <section class="section__game__info">
     <h1>Game Information here</h1>
-  </div>
+  </section>
 </template>
 
 <script>

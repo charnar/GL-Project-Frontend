@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main__container">
     <TheHeader></TheHeader>
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">

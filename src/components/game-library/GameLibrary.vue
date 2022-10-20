@@ -109,15 +109,6 @@ $width: 240px;
   max-width: ($width * 5) + (32px * 5);
   margin: 0 auto;
 
-  .game__library__grid {
-    width: auto;
-    margin-top: 3rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, $width);
-    margin: 2rem auto;
-    gap: 2rem;
-  }
-
   .top__filter__bar,
   .bottom__filter__bar {
     display: flex;

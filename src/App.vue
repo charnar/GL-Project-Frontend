@@ -1,5 +1,5 @@
 <template>
-  <div class="app__container scrollbar">
+  <div class="app__container">
     <transition name="vPopupSlideTop">
       <PopupMessage
         v-if="this.getModalMessage"

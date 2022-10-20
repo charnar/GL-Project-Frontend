@@ -11,7 +11,11 @@ import NavigationBar from "../ui/NavigationBar";
 import NavigationBack from "../ui/NavigationBack";
 export default {
   name: "TheHeader",
-
+  data() {
+    return {
+      altRoutes: ["GameInfo"],
+    };
+  },
   components: {
     NavigationBar,
     NavigationBack,
@@ -21,7 +25,7 @@ export default {
     ...mapGetters(["getProfilePicture"]),
 
     checkRouteName() {
-      return this.$route.name === "Accounts" ? true : false;
+      return this.altRoutes.includes(this.$route.name);
     },
   },
 

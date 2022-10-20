@@ -15,8 +15,14 @@ const routes = [
       },
       {
         path: "about",
-        name: "AboutView",
+        name: "About",
         component: () => import("@/views/main-child/AboutView"),
+      },
+
+      {
+        path: "/game/:gameid",
+        name: "GameInfo",
+        component: () => import("@/views/main-child/GameView"),
       },
 
       {
@@ -31,12 +37,6 @@ const routes = [
         ],
       },
     ],
-  },
-
-  {
-    path: "/game/:gameid",
-    name: "GameView",
-    component: () => import("@/views/GameView"),
   },
 
   {
