@@ -56,12 +56,12 @@ export default createStore({
   actions: {
     // Global state reset
     async logoutUser({ commit }) {
+      router.push("/login");
       commit("resetState");
       commit("resetLoginState");
       commit("resetRegistrationState");
       commit("resetUserState");
       commit("resetLibraryState");
-      router.push("/login");
     },
 
     updateModalMessage({ commit, dispatch }, message) {

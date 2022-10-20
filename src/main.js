@@ -13,10 +13,17 @@ import {
   faHeart as faHeartSolid,
   faRotate,
   faCircleXmark,
+  faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
-library.add(faMagnifyingGlass, faHeartSolid, faRotate, faCircleXmark);
+library.add(
+  faMagnifyingGlass,
+  faHeartSolid,
+  faRotate,
+  faCircleXmark,
+  faChevronLeft
+);
 
 createApp(App)
   .component("font-awesome-icon", FontAwesomeIcon)

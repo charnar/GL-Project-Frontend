@@ -1,5 +1,5 @@
 <template>
-  <section class="library__section">
+  <section class="section__library">
     <div class="top__filter__bar">
       <SearchBox
         :currentSearch="this.getSearchValue"
@@ -105,9 +105,8 @@ export default {
 <style lang="scss" scoped>
 $width: 240px;
 
-.library__section {
-  padding: 2rem 4rem;
-  max-width: ($width * 6) + (30px * 6);
+.section__library {
+  max-width: ($width * 5) + (32px * 5);
   margin: 0 auto;
 
   .game__library__grid {

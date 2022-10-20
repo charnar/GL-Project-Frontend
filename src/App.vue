@@ -1,5 +1,5 @@
 <template>
-  <div class="app__container">
+  <div class="app__container scrollbar">
     <transition name="vPopupSlideTop">
       <PopupMessage
         v-if="this.getModalMessage"
@@ -39,6 +39,10 @@ export default {
   color: color.$font-main;
 }
 
+:root {
+  color-scheme: dark;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -46,6 +50,10 @@ html {
 h1 {
   font-size: 4rem;
   font-weight: 500;
+}
+
+section {
+  padding: 2rem 4rem;
 }
 
 * {

@@ -1,3 +1,4 @@
+import { VueElement } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import store from "../store/index.js";
 
@@ -13,16 +14,29 @@ const routes = [
         component: () => import("@/views/main-child/HomeView"),
       },
       {
-        path: "/about",
+        path: "about",
         name: "AboutView",
         component: () => import("@/views/main-child/AboutView"),
       },
+
       {
-        path: "/game/:id",
-        name: "GameView",
-        component: () => import("@/views/main-child/GameView"),
+        path: "user/:id",
+        name: "User",
+        children: [
+          {
+            path: "accounts",
+            name: "Accounts",
+            component: () => import("@/views/user-child/AccountsView.vue"),
+          },
+        ],
       },
     ],
+  },
+
+  {
+    path: "/game/:gameid",
+    name: "GameView",
+    component: () => import("@/views/GameView"),
   },
 
   {

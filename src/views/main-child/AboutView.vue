@@ -1,5 +1,7 @@
 <template>
-  <h1>About Page Here</h1>
+  <section class="about__container">
+    <h1>About Page Here</h1>
+  </section>
 </template>
 
 <script>
