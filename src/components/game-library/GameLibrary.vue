@@ -39,7 +39,6 @@ import LibraryBar from "./LibraryBar";
 import SearchBox from "../ui/SearchBox";
 import PageBar from "./PageBar";
 import ButtonRefresh from "../ui/ButtonRefresh";
-
 import { mapGetters, mapActions } from "vuex";
 
 export default {

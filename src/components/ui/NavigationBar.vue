@@ -17,7 +17,7 @@
         </li>
 
         <li>
-          <router-link to="/user/userid/accounts">Accounts</router-link>
+          <router-link to="/user/accounts">Accounts</router-link>
         </li>
 
         <li>

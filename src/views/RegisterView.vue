@@ -27,7 +27,6 @@ export default {
     };
   },
   components: { RegisterForm },
-  methods: {},
 };
 </script>
 

@@ -26,7 +26,7 @@ const routes = [
       },
 
       {
-        path: "user/:id",
+        path: "user",
         name: "User",
         children: [
           {

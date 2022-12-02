@@ -1,39 +1,22 @@
 <template>
   <section class="section__accounts">
     <h1 class="services__container__heading">Add Account</h1>
-    <div class="services__container">
-      <AccountItem
-        v-for="account in accountServices"
-        :key="account.name"
-        :serviceIcon="account.image"
-        :serviceLink="account.link"
-      ></AccountItem>
-    </div>
-    <h2 class="linked__container__heading">Linked Accounts</h2>
-    <div class="linked__container">
-      <AccountItem
-        v-for="account in accountServices"
-        :key="account.name"
-        :serviceIcon="account.image"
-        :serviceLink="account.link"
-      ></AccountItem>
-    </div>
+
+    <LoginSteam></LoginSteam>
   </section>
 </template>
 
 <script>
-import AccountItem from "@/components/users/AccountItem";
-import { ACCOUNT_SERVICES } from "@/configs";
+import LoginSteam from "@/components/users/LoginSteam";
+
 export default {
   name: "AccountsView",
-  data() {
-    return {
-      accountServices: ACCOUNT_SERVICES,
-    };
+  components: {
+    LoginSteam,
   },
 
-  components: {
-    AccountItem,
+  mounted() {
+    console.log(this.$route);
   },
 };
 </script>

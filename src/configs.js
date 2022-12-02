@@ -4,6 +4,7 @@ export const GAMES_PER_PAGE = 10;
 export const TIMEOUT_API_CALL = 15 * 1000; // in seconds
 export const TIMEOUT_SEARCH = 800;
 export const TIMEOUT_MODAL_MESSAGE = 3 * 1000; // in seconds
+export const HOME_LINK = "http://localhost:3000";
 export const ACCOUNT_SERVICES = [
   {
     name: "Steam",
