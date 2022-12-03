@@ -2,21 +2,17 @@
   <section class="section__accounts">
     <h1 class="services__container__heading">Add Account</h1>
 
-    <LoginSteam></LoginSteam>
+    <SteamButton></SteamButton>
   </section>
 </template>
 
 <script>
-import LoginSteam from "@/components/users/LoginSteam";
+import SteamButton from "@/components/users/SteamButton";
 
 export default {
   name: "AccountsView",
   components: {
-    LoginSteam,
-  },
-
-  mounted() {
-    console.log(this.$route);
+    SteamButton,
   },
 };
 </script>

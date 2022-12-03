@@ -20,16 +20,39 @@
     <input
       type="hidden"
       name="openid.return_to"
-      value="http://localhost:3000/user/accounts"
+      value="http://localhost:3000/user/linked"
     />
-    <button type="submit">Log in through Steam</button>
+    <button type="submit">
+      <img src="@/assets/img/steam_logo.png" />Link with Steam
+    </button>
   </form>
 </template>
 
 <script>
 export default {
-  name: "LoginSteam",
+  name: "SteamButton",
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+button {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 2rem;
+  border-radius: 1.2rem;
+  font-size: 2rem;
+  background: rgb(233, 233, 233);
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+
+  &:hover {
+    background: rgb(168, 168, 168);
+    cursor: pointer;
+  }
+
+  img {
+    height: 4rem;
+    padding-right: 2rem;
+  }
+}
+</style>
