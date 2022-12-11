@@ -64,6 +64,13 @@ export default createStore({
       commit("resetLibraryState");
     },
 
+    checkSessionStatus({ dispatch }, status) {
+      if (status !== "SESSION_KEY_OK") {
+        dispatch("logoutUser");
+        dispatch("updateModalMessage", "Session has expired");
+      }
+    },
+
     updateModalMessage({ commit, dispatch }, message) {
       commit("setModalMessage", message);
 

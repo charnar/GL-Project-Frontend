@@ -45,3 +45,7 @@ export const rejectPromiseTimeout = (timeout) => {
 export const axiosPostRequest = (url, payload) => {
   return axios.post(url, payload);
 };
+
+export const getLinkedLibraries = (libraryArray) => {
+  return libraryArray.map((lib) => lib.library_type);
+};

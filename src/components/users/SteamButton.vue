@@ -22,8 +22,12 @@
       name="openid.return_to"
       value="http://localhost:3000/user/linked"
     />
-    <button type="submit">
-      <img src="@/assets/img/steam_logo.png" />Link with Steam
+    <button type="submit" :disabled="!this.linkedLibraries.includes('STEAM')">
+      <img src="@/assets/img/steam_logo.png" />{{
+        this.linkedLibraries.includes("STEAM")
+          ? "Link with Steam"
+          : "Already linked"
+      }}
     </button>
   </form>
 </template>
@@ -31,6 +35,7 @@
 <script>
 export default {
   name: "SteamButton",
+  props: ["linkedLibraries"],
 };
 </script>
 
