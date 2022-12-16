@@ -3,7 +3,7 @@ import {
   retrieveLibraryNames,
   axiosPostRequest,
 } from "@/helper";
-import { GAMES_PER_PAGE, JSON_API_URL } from "@/configs";
+import { GAMES_PER_PAGE, JSON_API_URL, API_URL } from "@/configs";
 import axios from "axios";
 
 const defaultLibraryState = () => {
@@ -61,10 +61,11 @@ const actions = {
     dispatch("updateGames");
   },
 
-  async updateGames({ commit, dispatch, getters, state }) {
+  async updateGames({ commit, dispatch, getters }) {
     try {
       // 1. Fetch user's game library from backend
       let response;
+      let responseNew;
       const libraryName = getters.getLibraryFilter;
 
       if (libraryName === "All") {
@@ -82,7 +83,22 @@ const actions = {
         });
       }
 
-      const { sessionStatus, games } = response.data;
+      // Real request to the backend, remove the top one when its fully finished
+      responseNew = await axios.post(
+        `${API_URL}/all-library-games/alphabetically`,
+        {
+          session_id: getters.getSessionID,
+        }
+      );
+      ////////////////////////////////////////////////////////////////////////////
+
+      const { games } = response.data;
+      const { status: sessionStatus } = responseNew.data;
+
+      console.log(sessionStatus);
+
+      // Check session response
+      dispatch("checkSessionStatus", sessionStatus);
 
       if (libraryName === "All") {
         const userGameLibraries = retrieveLibraryNames(games);
@@ -96,7 +112,7 @@ const actions = {
       // 4. Update the displayed library games
       dispatch("updateDisplayGames", games);
     } catch (err) {
-      throw Error("Something went wrong");
+      throw Error(err);
     }
   },
 

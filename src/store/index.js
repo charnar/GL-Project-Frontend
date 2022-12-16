@@ -89,7 +89,6 @@ export default createStore({
     },
   },
   modules: {
-    // any store for other components here
     user,
     login,
     registration,

@@ -105,6 +105,10 @@ export default {
       this.updateLoginStatus("NORMAL");
     },
   },
+
+  mounted() {
+    this.resetStatus();
+  },
 };
 </script>
 

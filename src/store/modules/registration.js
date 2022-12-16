@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_URL } from "@/configs.js";
+import router from "@/router/index.js";
 
 const defaultRegistrationState = () => {
   return {
@@ -25,6 +26,8 @@ const actions = {
       });
 
       const { status, username } = response.data;
+
+      if (status === "SUCCESS") router.push("/login");
       commit("setRegisterStatus", status);
     } catch (err) {
       console.error(err);

@@ -2,7 +2,7 @@
   <section class="section__accounts">
     <h1 class="services__container__heading">Add Account</h1>
 
-    <SteamButton :linkedLibraries="this.linkedLibraries"></SteamButton>
+    <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
   </section>
 </template>
 
@@ -27,6 +27,9 @@ export default {
 
   computed: {
     ...mapGetters(["getSessionID"]),
+    btnSteamStatus() {
+      return this.linkedLibraries.includes("STEAM");
+    },
   },
 
   methods: {
@@ -39,7 +42,7 @@ export default {
       const response = await axios.post(`${API_URL}/all-libraries`, payload);
 
       this.checkSessionStatus(response.data.status);
-      this.libraries = getLinkedLibraries(response.data.libraries);
+      this.linkedLibraries = getLinkedLibraries(response.data.libraries);
     } catch (err) {
       console.log(err);
     }

@@ -117,10 +117,10 @@ export default {
     resetStatus() {
       this.updateRegisterStatus("NORMAL");
     },
-    // resets the inputs on the HTML Form
-    resetForm() {
-      this.$refs.registerForm.reset();
-    },
+  },
+
+  mounted() {
+    this.resetStatus();
   },
 };
 </script>
