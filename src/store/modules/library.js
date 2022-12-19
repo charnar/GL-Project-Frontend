@@ -68,20 +68,20 @@ const actions = {
       let responseNew;
       const libraryName = getters.getLibraryFilter;
 
-      if (libraryName === "All") {
-        response = await axios.post(`${JSON_API_URL}/all-library-games`, {
-          session_id: getters.getSessionID,
-        });
-      } else {
-        const gameLibraries = getters.getGameLibraries;
-        const { id: libraryID } = gameLibraries.find(
-          (lib) => lib.name === libraryName
-        );
-        response = await axiosPostRequest(`${JSON_API_URL}/library-games`, {
-          session_id: getters.getSessionID,
-          library_id: libraryID,
-        });
-      }
+      // if (libraryName === "All") {
+      //   response = await axios.post(`${JSON_API_URL}/all-library-games`, {
+      //     session_id: getters.getSessionID,
+      //   });
+      // } else {
+      //   const gameLibraries = getters.getGameLibraries;
+      //   const { id: libraryID } = gameLibraries.find(
+      //     (lib) => lib.name === libraryName
+      //   );
+      //   response = await axiosPostRequest(`${JSON_API_URL}/library-games`, {
+      //     session_id: getters.getSessionID,
+      //     library_id: libraryID,
+      //   });
+      // }
 
       // Real request to the backend, remove the top one when its fully finished
       responseNew = await axios.post(
@@ -92,16 +92,18 @@ const actions = {
       );
       ////////////////////////////////////////////////////////////////////////////
 
-      const { games } = response.data;
-      const { status: sessionStatus } = responseNew.data;
+      // const { games } = response.data;
+      console.log(responseNew.data);
+      const { status: sessionStatus, games } = responseNew.data;
 
-      console.log(sessionStatus);
+      console.log(games);
 
       // Check session response
       dispatch("checkSessionStatus", sessionStatus);
 
       if (libraryName === "All") {
         const userGameLibraries = retrieveLibraryNames(games);
+        console.log(userGameLibraries);
         commit("setGameLibraries", userGameLibraries);
       } else {
         commit("setCurrentPage", 1);
