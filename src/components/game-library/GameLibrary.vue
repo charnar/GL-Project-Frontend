@@ -12,13 +12,12 @@
     <div class="bottom__filter__bar">
       <!-- Render only if user linked more than 1 library -->
       <LibraryBar
-        v-if="this.getGameLibraries.length > 2"
         :libraries="this.getGameLibraries"
         :handler="this.onLibraryChange"
         :currentLibrary="this.getLibraryFilter"
       ></LibraryBar>
 
-      <FilterBox :options="this.filters"></FilterBox>
+      <SortDropdown></SortDropdown>
     </div>
 
     <LibraryGrid :libraryGames="this.getDisplayGames"></LibraryGrid>
@@ -34,7 +33,7 @@
 
 <script>
 import LibraryGrid from "./LibraryGrid";
-import FilterBox from "../ui/FilterBox";
+import SortDropdown from "../ui/SortDropdown";
 import LibraryBar from "./LibraryBar";
 import SearchBox from "../ui/SearchBox";
 import PageBar from "./PageBar";
@@ -46,7 +45,7 @@ export default {
   components: {
     LibraryBar,
     SearchBox,
-    FilterBox,
+    SortDropdown,
     PageBar,
     ButtonRefresh,
     LibraryGrid,
@@ -112,6 +111,10 @@ $width: 240px;
   .bottom__filter__bar {
     display: flex;
     align-items: center;
+  }
+
+  .bottom__filter__bar {
+    justify-content: space-between;
   }
 }
 </style>

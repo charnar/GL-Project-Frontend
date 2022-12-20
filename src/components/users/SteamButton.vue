@@ -22,11 +22,7 @@
       name="openid.return_to"
       value="http://localhost:3000/user/linked"
     />
-    <button type="submit" :disabled="this.disableFlag">
-      <img src="@/assets/img/steam_logo.png" />{{
-        this.disableFlag ? "Already linked" : "Link with Steam"
-      }}
-    </button>
+    <button type="submit" :disabled="this.disableFlag"></button>
   </form>
 </template>
 
@@ -39,23 +35,21 @@ export default {
 
 <style lang="scss" scoped>
 button {
+  background: url("@/assets/img/steam_logo.png") no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: #3c3c3c;
   display: flex;
   align-items: center;
-  padding: 0.6rem 2rem;
-  border-radius: 0.5rem;
-  font-size: 2rem;
-  background: rgb(233, 233, 233);
-  color: rgb(0, 0, 0);
+  border-radius: 1rem;
+  padding: 1rem;
+  height: 100px;
+  width: 100px;
+  align-content: center;
   font-weight: 600;
 
   &:hover {
-    background: rgb(168, 168, 168);
     cursor: pointer;
-  }
-
-  img {
-    height: 4rem;
-    padding-right: 2rem;
   }
 }
 </style>

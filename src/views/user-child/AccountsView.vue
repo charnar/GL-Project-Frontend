@@ -2,7 +2,32 @@
   <section class="section__accounts">
     <h1 class="services__container__heading">Add Account</h1>
 
-    <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+    <div class="services__container">
+      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+    </div>
+
+    <h2 class="linked__container__heading">Connected accounts</h2>
+    <div class="linked__container">
+      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+    </div>
   </section>
 </template>
 
@@ -55,14 +80,14 @@ export default {
 .linked__container {
   display: grid;
   grid-template-columns: repeat(auto-fit, 84px);
-  gap: 2.6rem;
+  gap: 4rem;
   margin: 1rem 0;
 }
 
 .linked__container {
   padding: 2.6rem;
   background: rgba(100, 100, 100, 0.1);
-  border-radius: 2rem;
+  border-radius: 1rem;
 }
 
 .linked__container__heading {
