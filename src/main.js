@@ -14,12 +14,14 @@ import {
   faRotate,
   faCircleXmark,
   faChevronLeft,
+  faStar as faStarSolid,
 } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
 library.add(
   faMagnifyingGlass,
   faHeartSolid,
+  faStarSolid,
   faRotate,
   faCircleXmark,
   faChevronLeft

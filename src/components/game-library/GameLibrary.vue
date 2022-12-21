@@ -9,8 +9,7 @@
       <ButtonRefresh :handler="this.onRefreshClick"></ButtonRefresh>
     </div>
 
-    <div class="bottom__filter__bar">
-      <!-- Render only if user linked more than 1 library -->
+    <div v-if="this.getGameLibraries.length > 1" class="bottom__filter__bar">
       <LibraryBar
         :libraries="this.getGameLibraries"
         :handler="this.onLibraryChange"
@@ -20,7 +19,22 @@
       <SortDropdown></SortDropdown>
     </div>
 
-    <LibraryGrid :libraryGames="this.getDisplayGames"></LibraryGrid>
+    <LibraryGrid
+      v-if="this.hasGames"
+      :libraryGames="this.getDisplayGames"
+    ></LibraryGrid>
+
+    <div v-else class="message__box">
+      <h1>
+        {{
+          this.getGameLibraries.length <= 1
+            ? "Add accounts to see games from your library!"
+            : this.getSearchValue === ""
+            ? "We couldn't find any games in your library"
+            : "We couldn't find what you were looking for"
+        }}
+      </h1>
+    </div>
 
     <PageBar
       v-if="this.getNumPages > 1"
@@ -54,7 +68,6 @@ export default {
     return {
       games: [],
       filters: ["A-Z", "Favorites", "Date purchased", "Recently played"],
-      loadingFlag: true,
     };
   },
 
@@ -67,6 +80,9 @@ export default {
       "getCurrentPage",
       "getNumPages",
     ]),
+    hasGames: function () {
+      return this.getDisplayGames.length;
+    },
   },
 
   methods: {
@@ -116,5 +132,10 @@ $width: 240px;
   .bottom__filter__bar {
     justify-content: space-between;
   }
+}
+
+.message__box {
+  text-align: center;
+  padding: 4rem;
 }
 </style>

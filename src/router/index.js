@@ -34,12 +34,6 @@ const routes = [
             name: "Accounts",
             component: () => import("@/views/user-child/AccountsView.vue"),
           },
-
-          {
-            path: "linked",
-            name: "Linked",
-            component: () => import("@/views/user-child/LinkedView.vue"),
-          },
         ],
       },
     ],
@@ -55,6 +49,12 @@ const routes = [
     path: "/register",
     name: "Register",
     component: () => import("@/views/RegisterView"),
+  },
+
+  {
+    path: "/linked",
+    name: "LinkLanding",
+    component: () => import("@/views/user-child/LinkedView.vue"),
   },
 ];
 

@@ -27,6 +27,10 @@ export default {
     checkRouteName() {
       return this.altRoutes.includes(this.$route.name);
     },
+
+    checkTransactionRouteName() {
+      return this.transactionRoutes.includes(this.$route.name);
+    },
   },
 
   methods: {

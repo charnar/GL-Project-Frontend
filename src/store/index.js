@@ -54,14 +54,18 @@ export default createStore({
     },
   },
   actions: {
-    // Global state reset
+    /** Logs out the user and resets to default state */
     async logoutUser({ commit }) {
-      router.push("/login");
-      commit("resetState");
-      commit("resetLoginState");
-      commit("resetRegistrationState");
-      commit("resetUserState");
-      commit("resetLibraryState");
+      try {
+        await router.push("/login");
+        commit("resetState");
+        commit("resetLoginState");
+        commit("resetRegistrationState");
+        commit("resetUserState");
+        commit("resetLibraryState");
+      } catch (err) {
+        console.error("Failed to log out!");
+      }
     },
 
     checkSessionStatus({ dispatch }, status) {

@@ -2,30 +2,10 @@
   <section class="section__accounts">
     <h1 class="services__container__heading">Add Account</h1>
 
-    <div class="services__container">
-      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
-      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
-      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
-      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
-      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
-      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
-      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
-      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
-      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
-      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
-      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
-      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
-      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
-      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
-      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
-      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
-    </div>
+    <div class="services__container"></div>
 
     <h2 class="linked__container__heading">Connected accounts</h2>
     <div class="linked__container">
-      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
-      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
-      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
       <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
     </div>
   </section>

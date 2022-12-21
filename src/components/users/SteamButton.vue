@@ -20,7 +20,7 @@
     <input
       type="hidden"
       name="openid.return_to"
-      value="http://localhost:3000/user/linked"
+      value="http://localhost:3000/linked"
     />
     <button type="submit" :disabled="this.disableFlag"></button>
   </form>

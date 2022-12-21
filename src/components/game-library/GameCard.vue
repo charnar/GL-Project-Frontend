@@ -1,7 +1,11 @@
 <template>
-  <div :data-game-id="gameInfo.game_id" class="game__card" @click="onGameClick">
+  <div
+    :data-game-id="gameInfo.personal_game_id"
+    class="game__card"
+    @click="onGameClick"
+  >
     <div class="game__image">
-      <img :src="gameInfo.picture_url" />
+      <img :src="gameInfo.picture_url" @error="setPlaceholderImg" />
     </div>
 
     <div class="game__info">
@@ -15,7 +19,7 @@
         </span>
       </div>
 
-      <p>{{ gameInfo.game_description }}</p>
+      <p>{{ gameInfo.summary }}</p>
     </div>
   </div>
 </template>
@@ -34,6 +38,10 @@ export default {
       if (e.target.parentElement.closest(".favorite__btn"))
         this.toggleFavorites();
       else this.$router.push(`/game/${this.$el.getAttribute("data-game-id")}`);
+    },
+
+    setPlaceholderImg(event) {
+      event.target.src = require("@/assets/img/card_placeholder.jpg");
     },
   },
 };
