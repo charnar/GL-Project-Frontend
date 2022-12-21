@@ -1,5 +1,20 @@
 import axios from "axios";
 
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 // Converts ENUMERATORS into capitalized strings
 const cleanLibraryString = (libString) =>
   libString.charAt(0) + libString.slice(1).toLowerCase();
@@ -48,4 +63,9 @@ export const axiosPostRequest = (url, payload) => {
 
 export const getLinkedLibraries = (libraryArray) => {
   return libraryArray.map((lib) => lib.library_type);
+};
+
+export const get_release_date = (unixTimestamp) => {
+  const date = new Date(unixTimestamp * 1000);
+  return `${months[date.getMonth()]} ${date.getDay()}, ${date.getFullYear()}`;
 };

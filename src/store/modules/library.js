@@ -93,17 +93,13 @@ const actions = {
       ////////////////////////////////////////////////////////////////////////////
 
       // const { games } = response.data;
-      console.log(responseNew.data);
       const { status: sessionStatus, games } = responseNew.data;
-
-      console.log(games);
 
       // Check session response
       dispatch("checkSessionStatus", sessionStatus);
 
       if (libraryName === "All") {
         const userGameLibraries = retrieveLibraryNames(games);
-        console.log(userGameLibraries);
         commit("setGameLibraries", userGameLibraries);
       } else {
         commit("setCurrentPage", 1);

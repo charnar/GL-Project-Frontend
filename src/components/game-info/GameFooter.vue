@@ -23,6 +23,30 @@
     </div>
     <div class="details__container">
       <h2>Game Details</h2>
+
+      <table class="details__table">
+        <tr class="detail__heading">
+          <td class="detail__name">Genre</td>
+          <td class="detail__info">Simulation - Role-playing - Managerial</td>
+        </tr>
+
+        <tr class="detail__heading">
+          <td class="detail__name">Tags</td>
+          <td class="detail__info">
+            Indie, 2D, Great Soundtrack, Open World, Multiplayer, show 11
+          </td>
+        </tr>
+
+        <tr class="detail__heading">
+          <td class="detail__name">Works on</td>
+          <td class="detail__info">Simulation - Role-playing - Managerial</td>
+        </tr>
+
+        <tr class="detail__heading">
+          <td class="detail__name">Release date</td>
+          <td class="detail__info">{{ this.releaseDate }}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
@@ -30,6 +54,7 @@
 <script>
 export default {
   name: "GameFooter",
+  props: ["releaseDate"],
 };
 </script>
 
@@ -54,18 +79,42 @@ export default {
     margin-left: 1.6rem;
     font-size: 1.6rem;
     color: color.$font-description;
+
     li {
-      margin: 1.6rem 0;
+      margin-bottom: 1.6rem;
     }
   }
 
   h2 {
     font-size: 2.6rem;
     font-weight: 500;
+    margin-bottom: 1rem;
   }
 
   .highlighted__string {
     color: color.$font-tertiary;
+  }
+
+  .details__table {
+    width: 100%;
+    font-size: 1.6rem;
+
+    td {
+      padding-bottom: 1rem;
+      vertical-align: top;
+    }
+
+    .detail__name {
+      color: color.$font-tertiary;
+      font-weight: 500;
+      &::after {
+        content: ":";
+      }
+    }
+    .detail__info {
+      padding-left: 1.6rem;
+      color: color.$font-description;
+    }
   }
 }
 </style>

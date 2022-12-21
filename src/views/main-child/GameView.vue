@@ -36,7 +36,7 @@
       </div>
 
       <!-- Features and Game details container -->
-      <GameFooter></GameFooter>
+      <GameFooter :releaseDate="this.gameInfo.first_release_date"></GameFooter>
     </div>
   </section>
 </template>
@@ -46,7 +46,8 @@ import axios from "axios";
 import GameRating from "@/components/game-info/GameRating";
 import GameFooter from "@/components/game-info/GameFooter";
 import { API_URL } from "@/configs.js";
-import { mapGetters } from "vuex";
+import { get_release_date } from "@/helper";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "GameView",
@@ -65,16 +66,26 @@ export default {
     ...mapGetters(["getSessionID"]),
   },
   methods: {
+    ...mapActions(["checkSessionStatus"]),
     async fetchGameInfo() {
-      const payload = {
-        session_id: this.getSessionID,
-        game_id: Number(this.$route.params.gameid),
-      };
+      try {
+        const payload = {
+          session_id: this.getSessionID,
+          game_id: Number(this.$route.params.gameid),
+        };
 
-      const response = await axios.post(`${API_URL}/game-info`, payload);
-      const { status, ...gameInfo } = response.data;
-      this.gameInfo = gameInfo;
-      console.log(this.gameInfo);
+        const response = await axios.post(`${API_URL}/game-info`, payload);
+        const { status, ...gameInfo } = response.data;
+
+        this.checkSessionStatus(status);
+
+        this.gameInfo = gameInfo;
+        gameInfo.first_release_date = get_release_date(
+          gameInfo.first_release_date
+        );
+      } catch (err) {
+        console.log(err);
+      }
     },
   },
 
