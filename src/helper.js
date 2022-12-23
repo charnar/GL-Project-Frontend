@@ -69,3 +69,13 @@ export const get_release_date = (unixTimestamp) => {
   const date = new Date(unixTimestamp * 1000);
   return `${months[date.getMonth()]} ${date.getDay()}, ${date.getFullYear()}`;
 };
+
+export const get_time_played = (minutes) => {
+  return minutes === 0
+    ? `Not played`
+    : minutes === 1
+    ? `${minutes} minute`
+    : minutes < 60
+    ? `${minutes} minutes`
+    : `${Number((minutes / 60).toFixed(1))} hours`;
+};

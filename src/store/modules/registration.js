@@ -17,7 +17,7 @@ const getters = {
 };
 
 const actions = {
-  async checkRegistration({ commit }, registerInfo) {
+  async checkRegistration({ commit, dispatch }, registerInfo) {
     try {
       const response = await axios.post(`${API_URL}/register`, {
         username: registerInfo.username,
@@ -27,10 +27,18 @@ const actions = {
 
       const { status, username } = response.data;
 
-      if (status === "SUCCESS") router.push("/login");
+      if (status === "SUCCESS") {
+        dispatch("updateModalMessage", ["Registration was a success!", true]);
+        router.push("/login");
+      }
+
       commit("setRegisterStatus", status);
     } catch (err) {
-      console.error(err);
+      commit("setRegisterStatus", "NORMAL");
+
+      dispatch("updateModalMessage", [
+        "Something went wrong with your registration, please try again.",
+      ]);
     }
     // condition to check login goes here
   },

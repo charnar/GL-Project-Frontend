@@ -35,6 +35,7 @@ const actions = {
       commit("setLoginStatus", status);
 
       if (status === "SUCCESS") {
+        dispatch("updateModalMessage", ["Logged in successfully!", true]);
         commit("setAuthenticate");
         commit("setSessionID", session_id);
         commit("setUsername", username);
@@ -42,8 +43,10 @@ const actions = {
       }
     } catch (err) {
       commit("setLoginStatus", "NORMAL");
-      // console.error(err);
-      dispatch("updateModalMessage", err);
+
+      dispatch("updateModalMessage", [
+        "We couldn't log you in, please try again.",
+      ]);
     }
   },
 

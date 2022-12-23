@@ -17,7 +17,10 @@
         <div class="header__right__container">
           <div class="hours__played__container">
             <h3>
-              Play time <span class="game__hours">2 hrs</span>
+              Play time
+              <span class="game__hours">{{
+                this.gameInfo.total_play_time
+              }}</span>
               <span class="favorite__btn favorite__active">
                 <font-awesome-icon icon="fa-solid fa-heart" />
               </span>
@@ -35,6 +38,14 @@
         </p>
       </div>
 
+      <!-- Description container -->
+      <div v-if="gameInfo.storyline" class="game__description__container">
+        <h2>Storyline</h2>
+        <p>
+          {{ this.gameInfo.storyline }}
+        </p>
+      </div>
+
       <!-- Features and Game details container -->
       <GameFooter :releaseDate="this.gameInfo.first_release_date"></GameFooter>
     </div>
@@ -46,7 +57,7 @@ import axios from "axios";
 import GameRating from "@/components/game-info/GameRating";
 import GameFooter from "@/components/game-info/GameFooter";
 import { API_URL } from "@/configs.js";
-import { get_release_date } from "@/helper";
+import { get_release_date, get_time_played } from "@/helper";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
@@ -65,6 +76,7 @@ export default {
   computed: {
     ...mapGetters(["getSessionID"]),
   },
+
   methods: {
     ...mapActions(["checkSessionStatus"]),
     async fetchGameInfo() {
@@ -78,11 +90,14 @@ export default {
         const { status, ...gameInfo } = response.data;
 
         this.checkSessionStatus(status);
-
         this.gameInfo = gameInfo;
+
+        console.log(gameInfo);
         gameInfo.first_release_date = get_release_date(
           gameInfo.first_release_date
         );
+
+        gameInfo.total_play_time = get_time_played(gameInfo.total_play_time);
       } catch (err) {
         console.log(err);
       }
@@ -136,6 +151,7 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 3.2rem;
 }
 
 .header__left__container {
@@ -173,11 +189,7 @@ section {
 }
 
 .game__description__container {
-  padding: 3.2rem 0;
-  // h2 {
-  //   font-size: 2.6rem;
-  //   font-weight: 500;
-  // }
+  padding-bottom: 3.2rem;
 
   p {
     margin-top: 1.4rem;

@@ -1,6 +1,6 @@
 <template>
   <div class="modal__container">
-    <span v-if="!this.markerBoolean" class="error__mark"
+    <span v-if="!this.modalBoolean" class="error__mark"
       ><font-awesome-icon icon="fa-solid fa-circle-xmark"
     /></span>
 
@@ -14,7 +14,7 @@
 <script>
 export default {
   name: "PopupMessage",
-  props: ["messageContent", "markerBoolean"],
+  props: ["messageContent", "modalBoolean"],
 };
 </script>
 

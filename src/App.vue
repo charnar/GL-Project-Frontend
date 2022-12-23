@@ -4,6 +4,7 @@
       <PopupMessage
         v-if="this.getModalMessage"
         :messageContent="this.getModalMessage"
+        :modalBoolean="this.getModalIcon"
       ></PopupMessage>
     </transition>
 
@@ -23,7 +24,7 @@ export default {
   name: "App",
   components: { PopupMessage },
   computed: {
-    ...mapGetters(["getModalMessage"]),
+    ...mapGetters(["getModalMessage", "getModalIcon"]),
   },
 };
 </script>

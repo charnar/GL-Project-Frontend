@@ -12,6 +12,7 @@ const defaultIndexState = () => {
     isAuthenticated: false,
     sessionID: "",
     modalMessage: null,
+    modalIcon: false,
   };
 };
 
@@ -35,6 +36,10 @@ export default createStore({
     getModalMessage(state) {
       return state.modalMessage;
     },
+
+    getModalIcon(state) {
+      return state.modalIcon;
+    },
   },
   mutations: {
     setModalMessage(state, message) {
@@ -47,6 +52,10 @@ export default createStore({
 
     setSessionID(state, sessionID) {
       state.sessionID = sessionID;
+    },
+
+    setModalIcon(state, iconFlag) {
+      state.modalIcon = iconFlag;
     },
 
     resetState(state) {
@@ -71,11 +80,20 @@ export default createStore({
     checkSessionStatus({ dispatch }, status) {
       if (status !== "SESSION_KEY_OK") {
         dispatch("logoutUser");
-        dispatch("updateModalMessage", "Session has expired");
+        dispatch("updateModalMessage", ["Session has expired"]);
       }
     },
 
-    updateModalMessage({ commit, dispatch }, message) {
+    updateModalMessage({ commit, dispatch }, modalArray) {
+      let message, markerBoolean;
+      if (!modalArray) {
+        message = null;
+        markerBoolean = false;
+      } else {
+        [message, markerBoolean] = modalArray;
+      }
+
+      commit("setModalIcon", markerBoolean);
       commit("setModalMessage", message);
 
       // Reset timeout for modal message window
