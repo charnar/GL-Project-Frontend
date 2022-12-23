@@ -1,6 +1,12 @@
 <template>
   <div class="modal__container">
-    <span><font-awesome-icon icon="fa-solid fa-circle-xmark" /></span>
+    <span v-if="!this.markerBoolean" class="error__mark"
+      ><font-awesome-icon icon="fa-solid fa-circle-xmark"
+    /></span>
+
+    <span v-else class="correct__mark"
+      ><font-awesome-icon icon="fa-solid fa-circle-check"
+    /></span>
     <h2 class="modal__message">{{ messageContent }}</h2>
   </div>
 </template>
@@ -8,7 +14,7 @@
 <script>
 export default {
   name: "PopupMessage",
-  props: ["messageContent"],
+  props: ["messageContent", "markerBoolean"],
 };
 </script>
 
@@ -30,10 +36,18 @@ export default {
   padding: 1.4rem;
   border-radius: 0 0 2rem 2rem;
   @include mixin.box-shadow();
+
   span {
     font-size: 2.4rem;
     margin-right: 1rem;
+  }
+
+  .error__mark {
     color: color.$font-error;
+  }
+
+  .correct__mark {
+    color: color.$font-tertiary;
   }
 
   h2 {

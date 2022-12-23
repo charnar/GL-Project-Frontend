@@ -12,6 +12,7 @@ import {
   faMagnifyingGlass,
   faHeart as faHeartSolid,
   faRotate,
+  faCircleCheck,
   faCircleXmark,
   faChevronLeft,
   faStar as faStarSolid,
@@ -24,7 +25,8 @@ library.add(
   faStarSolid,
   faRotate,
   faCircleXmark,
-  faChevronLeft
+  faChevronLeft,
+  faCircleCheck
 );
 
 createApp(App)

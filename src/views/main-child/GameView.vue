@@ -10,7 +10,7 @@
       <div class="game__header__container">
         <div class="header__left__container">
           <h1 class="game__title">{{ this.gameInfo.game_name }}</h1>
-          <GameRating></GameRating>
+          <GameRating :ratingRaw="this.gameInfo.rating"></GameRating>
         </div>
 
         <!-- Game Top Info container-->
