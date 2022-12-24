@@ -64,7 +64,9 @@ export default {
 
   .features__container,
   .details__container {
+    display: flex;
     flex: 50%;
+    flex-direction: column;
   }
 
   .features__container {
@@ -114,6 +116,21 @@ export default {
     .detail__info {
       padding-left: 1.6rem;
       color: color.$font-description;
+    }
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .game__info__footer {
+    flex-direction: column;
+
+    .features__container,
+    .details__container {
+      margin: 0;
+    }
+
+    .details__container {
+      margin-top: 1.6rem;
     }
   }
 }

@@ -1,21 +1,28 @@
 <template>
-  <vueper-slides
-    v-if="this.gameImages"
-    class="no-shadow carousel__thumbnails"
-    :visible-slides="3"
-    :arrows="false"
-    slide-multiple
-    :slide-ratio="1 / 6"
-    :dragging-distance="150"
-    :breakpoints="{ 800: { visibleSlides: 2, slideMultiple: 2 } }"
-    bullets-outside
-  >
-    <vueper-slide
-      v-for="gameImage in gameImages"
-      :key="gameImage.name"
-      :image="gameImage.screenshot_url"
-    />
-  </vueper-slides>
+  <div class="carousel__wrapper">
+    <vueper-slides
+      v-if="this.gameImages"
+      class="no-shadow carousel__thumbnails"
+      lazy
+      :visible-slides="3"
+      :arrows="false"
+      slide-multiple
+      fixed-height="200px"
+      :dragging-distance="100"
+      :breakpoints="{
+        1200: { visibleSlides: 2, slideMultiple: 2 },
+        800: { visibleSlides: 1, slideMultiple: 1 },
+      }"
+      bullets-outside
+    >
+      <vueper-slide
+        v-for="gameImage in gameImages"
+        :key="gameImage.name"
+        :image="gameImage.screenshot_url"
+        :video="gameImage.video_id"
+      />
+    </vueper-slides>
+  </div>
 </template>
 
 <script>
@@ -30,6 +37,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/sass/_components.scss";
+
+.carousel__wrapper {
+  margin-bottom: 6rem;
+}
 .carousel__thumbnails {
   .vueperslide {
     border: 3px solid #fff;

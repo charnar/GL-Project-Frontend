@@ -1,7 +1,11 @@
 <template>
   <section class="section__game__info">
     <div class="game__cover__background">
-      <img :src="this.gameInfo.banner_url" alt="Cover Background" />
+      <img
+        v-if="this.gameInfo"
+        :src="this.gameInfo.banner_url"
+        alt="Cover Background"
+      />
     </div>
 
     <div class="blank__div"></div>
@@ -154,7 +158,7 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 3.2rem;
+  margin-bottom: 3.2rem;
 }
 
 .header__left__container {
@@ -198,6 +202,16 @@ section {
     margin-top: 1.4rem;
     font-size: 1.6rem;
     color: color.$font-description;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .game__header__container {
+    flex-direction: column;
+
+    .header__left__container {
+      margin-bottom: 2rem;
+    }
   }
 }
 </style>
