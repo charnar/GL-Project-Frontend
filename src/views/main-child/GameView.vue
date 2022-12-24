@@ -29,6 +29,7 @@
         </div>
       </div>
       <!-- Video/Gallery container goes here WIP -->
+      <GameGallery :gameImages="this.gameInfo.screenshots"></GameGallery>
 
       <!-- Description container -->
       <div class="game__description__container">
@@ -56,6 +57,7 @@
 import axios from "axios";
 import GameRating from "@/components/game-info/GameRating";
 import GameFooter from "@/components/game-info/GameFooter";
+import GameGallery from "@/components/game-info/GameGallery";
 import { API_URL } from "@/configs.js";
 import { get_release_date, get_time_played } from "@/helper";
 import { mapActions, mapGetters } from "vuex";
@@ -71,6 +73,7 @@ export default {
   components: {
     GameRating,
     GameFooter,
+    GameGallery,
   },
 
   computed: {
