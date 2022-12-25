@@ -16,6 +16,7 @@ const defaultLibraryState = () => {
     currentPage: 1,
     numPages: 1,
     gamesPerPage: GAMES_PER_PAGE,
+    videoLink: "",
   };
 };
 
@@ -52,6 +53,10 @@ const getters = {
 
   getGamesPerPage(store) {
     return store.gamesPerPage;
+  },
+
+  getVideoLink(store) {
+    return store.videoLink;
   },
 };
 
@@ -151,6 +156,10 @@ const actions = {
     commit("setCurrentPage", 1);
     dispatch("updateDisplayGames", getters.getGames);
   },
+
+  updateVideoLink({ commit }, link) {
+    commit("setVideoLink", link);
+  },
 };
 
 const mutations = {
@@ -180,6 +189,10 @@ const mutations = {
 
   setLibraryFilter(store, status) {
     store.libraryFilter = status;
+  },
+
+  setVideoLink(store, status) {
+    store.videoLink = status;
   },
 
   resetLibraryState(state) {

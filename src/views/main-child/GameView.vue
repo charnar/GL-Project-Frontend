@@ -1,5 +1,6 @@
 <template>
   <section class="section__game__info">
+    <VideoModal v-if="this.getVideoLink"></VideoModal>
     <div class="game__cover__background">
       <img
         v-if="this.gameInfo"
@@ -33,7 +34,10 @@
         </div>
       </div>
       <!-- Video/Gallery container goes here WIP -->
-      <GameGallery :gameImages="this.gameInfo.screenshots"></GameGallery>
+      <GameGallery
+        :gameImages="this.gameInfo.screenshots"
+        :gameVideos="this.gameInfo.videos"
+      ></GameGallery>
 
       <!-- Description container -->
       <div class="game__description__container">
@@ -62,6 +66,7 @@ import axios from "axios";
 import GameRating from "@/components/game-info/GameRating";
 import GameFooter from "@/components/game-info/GameFooter";
 import GameGallery from "@/components/game-info/GameGallery";
+import VideoModal from "@/components/game-info/VideoModal";
 import { API_URL } from "@/configs.js";
 import { get_release_date, get_time_played } from "@/helper";
 import { mapActions, mapGetters } from "vuex";
@@ -78,10 +83,11 @@ export default {
     GameRating,
     GameFooter,
     GameGallery,
+    VideoModal,
   },
 
   computed: {
-    ...mapGetters(["getSessionID"]),
+    ...mapGetters(["getSessionID", "getVideoLink"]),
   },
 
   methods: {
@@ -208,6 +214,7 @@ section {
 @media only screen and (max-width: 640px) {
   .game__header__container {
     flex-direction: column;
+    text-align: center;
 
     .header__left__container {
       margin-bottom: 2rem;

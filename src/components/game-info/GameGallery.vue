@@ -1,7 +1,7 @@
 <template>
   <div class="carousel__wrapper">
     <vueper-slides
-      v-if="this.gameImages"
+      v-if="this.gameImages || this.gameVideos"
       class="no-shadow carousel__thumbnails"
       lazy
       :visible-slides="3"
@@ -16,6 +16,12 @@
       bullets-outside
     >
       <vueper-slide
+        v-for="gameVideo in gameVideos.slice(0, 2)"
+        :key="gameVideo.name"
+        :video="`https://www.youtube.com/embed/${gameVideo.video_id}`"
+        @click.native="handleVideoClick(gameVideo.video_id)"
+      />
+      <vueper-slide
         v-for="gameImage in gameImages"
         :key="gameImage.name"
         :image="gameImage.screenshot_url"
@@ -28,11 +34,19 @@
 <script>
 import { VueperSlides, VueperSlide } from "vueperslides";
 import "vueperslides/dist/vueperslides.css";
+import { mapActions } from "vuex";
 
 export default {
   name: "GameGallery",
   props: ["gameVideos", "gameImages"],
   components: { VueperSlides, VueperSlide },
+  methods: {
+    ...mapActions(["updateVideoLink"]),
+
+    handleVideoClick(video_id) {
+      this.updateVideoLink(`https://www.youtube.com/embed/${video_id}`);
+    },
+  },
 };
 </script>
 
