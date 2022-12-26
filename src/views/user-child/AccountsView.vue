@@ -7,12 +7,14 @@
     <h2 class="linked__container__heading">Connected accounts</h2>
     <div class="linked__container">
       <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
+      <GOGService></GOGService>
     </div>
   </section>
 </template>
 
 <script>
 import SteamButton from "@/components/users/SteamButton";
+import GOGService from "@/components/users/GOGService.vue";
 import { API_URL } from "@/configs";
 import { getLinkedLibraries } from "@/helper";
 import { mapActions, mapGetters } from "vuex";
@@ -28,6 +30,7 @@ export default {
   },
   components: {
     SteamButton,
+    GOGService,
   },
 
   computed: {
