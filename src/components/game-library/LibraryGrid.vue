@@ -20,9 +20,9 @@ export default {
 <style lang="scss" scoped>
 $width: 240px;
 .game__library__grid {
-  width: auto;
   margin-top: 3rem;
   display: grid;
+  justify-content: center;
   grid-template-columns: repeat(auto-fill, $width);
   margin: 2rem auto;
   gap: 2rem;

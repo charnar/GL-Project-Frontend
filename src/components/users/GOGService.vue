@@ -28,10 +28,9 @@ export default {
 
 <style lang="scss" scoped>
 button {
-  background: purple;
+  background: url("@/assets/img/gog_logo.jpg");
   background-position: center;
   background-size: cover;
-  background-color: #3c3c3c;
   display: flex;
   align-items: center;
   border-radius: 1rem;

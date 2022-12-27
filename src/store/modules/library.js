@@ -5,6 +5,7 @@ import {
 } from "@/helper";
 import { GAMES_PER_PAGE, JSON_API_URL, API_URL } from "@/configs";
 import axios from "axios";
+import { library } from "@fortawesome/fontawesome-svg-core";
 
 const defaultLibraryState = () => {
   return {
@@ -69,7 +70,7 @@ const actions = {
   async updateGames({ commit, dispatch, getters }) {
     try {
       // 1. Fetch user's game library from backend
-      let response;
+      // let response;
       let responseNew;
       const libraryName = getters.getLibraryFilter;
 
@@ -95,7 +96,6 @@ const actions = {
           session_id: getters.getSessionID,
         }
       );
-      ////////////////////////////////////////////////////////////////////////////
 
       // const { games } = response.data;
       const { status: sessionStatus, games } = responseNew.data;
@@ -159,6 +159,23 @@ const actions = {
 
   updateVideoLink({ commit }, link) {
     commit("setVideoLink", link);
+  },
+
+  async processLinkedLibrary({ getters, dispatch }, library_info) {
+    try {
+      const [library_name, api_key] = library_info;
+      console.log(library_name, api_key);
+      const payload = {
+        session_id: getters.getSessionID,
+        library_type: library_name,
+        library_api_key: api_key,
+      };
+
+      const response = await axios.post(`${API_URL}/register-library`, payload);
+      console.log(response);
+    } catch (err) {
+      console.error(err);
+    }
   },
 };
 

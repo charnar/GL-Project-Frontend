@@ -20,7 +20,7 @@
     <input
       type="hidden"
       name="openid.return_to"
-      value="http://localhost:3000/linked"
+      value="http://localhost:3000/linked/steam"
     />
     <button type="submit" :disabled="this.disableFlag"></button>
   </form>
@@ -35,7 +35,7 @@ export default {
 
 <style lang="scss" scoped>
 button {
-  background: url("@/assets/img/steam_logo.png") no-repeat;
+  background: url("@/assets/img/steam_logo.jpg") no-repeat;
   background-position: center;
   background-size: cover;
   background-color: #3c3c3c;

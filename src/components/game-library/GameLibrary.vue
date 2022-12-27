@@ -28,12 +28,20 @@
       <h1>
         {{
           this.getGameLibraries.length <= 1
-            ? "Add accounts to see games from your library!"
+            ? "You currently don't have any registered game libraries!"
             : this.getSearchValue === ""
             ? "We couldn't find any games in your library"
             : "We couldn't find what you were looking for"
         }}
       </h1>
+
+      <button
+        v-if="this.getGameLibraries.length <= 1"
+        class="link__account__btn"
+        @click="this.$router.push('/user/accounts')"
+      >
+        Add Library Accounts
+      </button>
     </div>
 
     <PageBar
@@ -117,6 +125,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/sass/_components.scss";
+
 $width: 240px;
 
 .section__library {
@@ -137,5 +147,19 @@ $width: 240px;
 .message__box {
   text-align: center;
   padding: 4rem;
+}
+
+.link__account__btn {
+  transition: transform 0.2s ease-out;
+  margin-top: 2rem;
+  padding: 1.8rem 6rem;
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 1rem;
+  @extend .btn__active;
+
+  &:hover {
+    transform: translate(0, -5px);
+  }
 }
 </style>

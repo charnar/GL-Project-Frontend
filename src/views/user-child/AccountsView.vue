@@ -2,20 +2,30 @@
   <section class="section__accounts">
     <h1 class="services__container__heading">Add Account</h1>
 
-    <div class="services__container"></div>
+    <div class="services__container">
+      <component
+        v-for="component in this.unlinkedServices"
+        v-bind:is="component"
+      ></component>
+    </div>
 
     <h2 class="linked__container__heading">Connected accounts</h2>
     <div class="linked__container">
-      <SteamButton :disableFlag="this.btnSteamStatus"></SteamButton>
-      <GOGService></GOGService>
+      <component
+        v-for="component in this.linkedServices"
+        v-bind:is="component"
+        :disableFlag="true"
+      ></component>
     </div>
   </section>
 </template>
 
 <script>
-import SteamButton from "@/components/users/SteamButton";
-import GOGService from "@/components/users/GOGService.vue";
-import { API_URL } from "@/configs";
+import SteamService from "@/components/users/SteamService";
+import GOGService from "@/components/users/GOGService";
+import OriginService from "@/components/users/OriginService";
+import EpicService from "@/components/users/EpicService";
+import { API_URL, ACCOUNT_SERVICES } from "@/configs";
 import { getLinkedLibraries } from "@/helper";
 import { mapActions, mapGetters } from "vuex";
 import axios from "axios";
@@ -25,19 +35,19 @@ export default {
 
   data() {
     return {
-      linkedLibraries: [],
+      linkedServices: [],
+      unlinkedServices: [],
     };
   },
   components: {
-    SteamButton,
+    SteamService,
     GOGService,
+    OriginService,
+    EpicService,
   },
 
   computed: {
     ...mapGetters(["getSessionID"]),
-    btnSteamStatus() {
-      return this.linkedLibraries.includes("STEAM");
-    },
   },
 
   methods: {
@@ -48,11 +58,18 @@ export default {
     try {
       const payload = { session_id: this.getSessionID };
       const response = await axios.post(`${API_URL}/all-libraries`, payload);
-
       this.checkSessionStatus(response.data.status);
-      this.linkedLibraries = getLinkedLibraries(response.data.libraries);
+      const userLinkedServices = getLinkedLibraries(response.data.libraries);
+
+      ACCOUNT_SERVICES.forEach((service) => {
+        userLinkedServices.includes(service.name)
+          ? this.linkedServices.push(service.component_name)
+          : this.unlinkedServices.push(service.component_name);
+      });
+
+      console.log(this.linkedServices, this.unlinkedServices);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   },
 };

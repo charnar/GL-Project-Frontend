@@ -52,7 +52,7 @@ const routes = [
   },
 
   {
-    path: "/linked",
+    path: "/linked/:libraryname",
     name: "LinkLanding",
     component: () => import("@/views/user-child/LinkedView.vue"),
   },

@@ -1,0 +1,37 @@
+<template>
+  <div class="service__btn__wrapper">
+    <button @click="handleClick"></button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "OriginService",
+
+  methods: {
+    handleClick(e) {
+      console.log("Origin Link comming soon...");
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+button {
+  background: url("@/assets/img/origin_logo.png");
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  border-radius: 1rem;
+  padding: 1rem;
+  height: 100px;
+  width: 100px;
+  align-content: center;
+  font-weight: 600;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+</style>
