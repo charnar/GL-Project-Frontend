@@ -23,4 +23,7 @@ export const ACCOUNT_SERVICES = [
     name: "EPIC",
     component_name: "EpicService",
   },
+  { name: "XBOX",
+    component_name: "XboxService"
+  },
 ];

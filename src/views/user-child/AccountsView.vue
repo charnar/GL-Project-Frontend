@@ -22,6 +22,7 @@
 
 <script>
 import SteamService from "@/components/users/SteamService";
+import XboxService from "@/components/users/XboxService";
 import GOGService from "@/components/users/GOGService";
 import OriginService from "@/components/users/OriginService";
 import EpicService from "@/components/users/EpicService";
@@ -44,6 +45,7 @@ export default {
     GOGService,
     OriginService,
     EpicService,
+    XboxService,
   },
 
   computed: {
