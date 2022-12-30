@@ -1,7 +1,7 @@
 <template>
   <div class="page__bar__container" @click="handlePageBarClick">
     <ul class="page__bar">
-      <li class="page__btn">
+      <!-- <li class="page__btn">
         {{ this.getCurrentPage - 2 > 0 ? `${this.getCurrentPage - 2}` : "" }}
       </li>
       <li class="page__btn">
@@ -21,7 +21,38 @@
             ? `${this.getCurrentPage + 2}`
             : ""
         }}
-      </li>
+      </li> -->
+
+      <template v-if="currentPage <= 3">
+        <li
+          v-if="this.numPages < this.displayPages"
+          class="page__btn"
+          v-for="page in this.numPages"
+          :class="{ page__active: currentPage === page }"
+        >
+          {{ page }}
+        </li>
+
+        <li
+          v-else
+          class="page__btn"
+          v-for="page in this.displayPages"
+          :class="{ page__active: currentPage === page }"
+        >
+          {{ page }}
+        </li>
+      </template>
+
+      <template v-else>
+        <li
+          v-if="this.currentPage === this.numPages - 2"
+          class="page__btn"
+          v-for="page in this.displayPages"
+          :class="{ page__active: currentPage === page + (currentPage - 3) }"
+        >
+          {{ page + (currentPage - 3) }}
+        </li>
+      </template>
     </ul>
   </div>
 </template>
