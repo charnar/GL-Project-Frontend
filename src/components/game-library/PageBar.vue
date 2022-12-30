@@ -107,14 +107,14 @@
           <li
             v-else
             class="page__btn"
-            v-for="page in numPages"
+            v-for="page in this.displayPages"
             :key="page"
             :class="{
               page__active:
-                currentPage === currentPage - this.pageEndRange + page,
+                currentPage === currentPage + (page - this.pageEndRange - 1),
             }"
           >
-            {{ currentPage - (this.pageEndRange + page) }}
+            {{ currentPage + (page - this.pageEndRange - 1) }}
           </li>
         </template>
       </template>
