@@ -23,11 +23,12 @@
         }}
       </li> -->
 
-      <template v-if="currentPage <= 3">
+      <!-- <template v-if="currentPage <= 3">
         <li
           v-if="this.numPages < this.displayPages"
           class="page__btn"
           v-for="page in this.numPages"
+          :key="page"
           :class="{ page__active: currentPage === page }"
         >
           {{ page }}
@@ -41,17 +42,81 @@
         >
           {{ page }}
         </li>
-      </template>
+      </template> -->
 
-      <template v-else>
+      <!-- <template v-else>
         <li
-          v-if="this.currentPage === this.numPages - 2"
+          v-if="this.currentPage >= this.numPages - 2"
+          class="page__btn"
+          v-for="page in this.displayPages"
+          :class="{
+            page__active: currentPage === this.numPages - 2 + (page - 3),
+          }"
+        >
+          {{ this.numPages - 2 + (page - 3) }}
+        </li>
+        <li
+          v-else
           class="page__btn"
           v-for="page in this.displayPages"
           :class="{ page__active: currentPage === page + (currentPage - 3) }"
         >
           {{ page + (currentPage - 3) }}
         </li>
+      </template> -->
+
+      <template v-if="numPages <= this.displayPages">
+        <li
+          class="page__btn"
+          v-for="page in numPages"
+          :key="page"
+          :class="{ page__active: currentPage === page }"
+        >
+          {{ page }}
+        </li>
+      </template>
+
+      <template v-else>
+        <template v-if="currentPage >= numPages - this.pageEndRange">
+          <li
+            class="page__btn"
+            v-for="page in this.displayPages"
+            :key="page"
+            :class="{
+              page__active:
+                currentPage ===
+                numPages - this.pageEndRange + (page - this.pageEndRange) - 1,
+            }"
+          >
+            {{ numPages - this.pageEndRange + (page - this.pageEndRange) - 1 }}
+          </li>
+        </template>
+
+        <template v-else>
+          <template v-if="currentPage <= 3">
+            <li
+              class="page__btn"
+              v-for="page in this.displayPages"
+              :key="page"
+              :class="{ page__active: currentPage === page }"
+            >
+              {{ page }}
+            </li>
+          </template>
+
+          <li
+            v-else
+            class="page__btn"
+            v-for="page in numPages"
+            :key="page"
+            :class="{
+              page__active:
+                currentPage === currentPage - this.pageEndRange + page,
+            }"
+          >
+            {{ currentPage - (this.pageEndRange + page) }}
+          </li>
+        </template>
       </template>
     </ul>
   </div>
@@ -59,7 +124,6 @@
 
 <script>
 import { DISPLAY_PAGES } from "@/configs.js";
-import { mapGetters } from "vuex";
 export default {
   name: "PageBar",
   props: ["currentPage", "numPages", "handler"],
@@ -71,7 +135,9 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["getCurrentPage", "getNumPages"]),
+    pageEndRange() {
+      return Math.floor(this.displayPages / 2);
+    },
   },
   methods: {
     handlePageBarClick(e) {
