@@ -1,22 +1,47 @@
 <template>
   <div class="page__bar__container" @click="handlePageBarClick">
     <ul class="page__bar">
-      <li
-        class="page__btn"
-        v-for="page in numPages"
-        :key="page"
-        :class="{ page__active: currentPage === page }"
-      >
-        {{ page }}
+      <li class="page__btn">
+        {{ this.getCurrentPage - 2 > 0 ? `${this.getCurrentPage - 2}` : "" }}
+      </li>
+      <li class="page__btn">
+        {{ this.getCurrentPage - 1 > 0 ? `${this.getCurrentPage - 1}` : "" }}
+      </li>
+      <li class="page__btn page__active">{{ this.getCurrentPage }}</li>
+      <li class="page__btn">
+        {{
+          this.getCurrentPage + 1 <= this.getNumPages
+            ? `${this.getCurrentPage + 1}`
+            : ""
+        }}
+      </li>
+      <li class="page__btn">
+        {{
+          this.getCurrentPage + 2 <= this.getNumPages
+            ? `${this.getCurrentPage + 2}`
+            : ""
+        }}
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import { DISPLAY_PAGES } from "@/configs.js";
+import { mapGetters } from "vuex";
 export default {
   name: "PageBar",
   props: ["currentPage", "numPages", "handler"],
+
+  data() {
+    return {
+      displayPages: DISPLAY_PAGES,
+    };
+  },
+
+  computed: {
+    ...mapGetters(["getCurrentPage", "getNumPages"]),
+  },
   methods: {
     handlePageBarClick(e) {
       if (e.target.classList.contains("page__btn"))

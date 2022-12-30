@@ -1,13 +1,13 @@
 <template>
   <div class="service__btn__wrapper">
-    <button @click="handleClick"></button>
-    <!-- <a href="javascript:window.open('','_blank');">Sketchy AF</a> -->
+    <button @click="handleClick" :disabled="this.disableFlag"></button>
   </div>
 </template>
 
 <script>
 export default {
   name: "GOGService",
+  props: ["disableFlag"],
   data() {
     return {
       GOGPopupWindow: "",

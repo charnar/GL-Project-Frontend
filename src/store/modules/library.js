@@ -18,6 +18,7 @@ const defaultLibraryState = () => {
     numPages: 1,
     gamesPerPage: GAMES_PER_PAGE,
     videoLink: "",
+    libraryProcess: "AVAILABLE",
   };
 };
 
@@ -58,6 +59,10 @@ const getters = {
 
   getVideoLink(store) {
     return store.videoLink;
+  },
+
+  getLibraryProcess(store) {
+    return store.libraryProcess;
   },
 };
 
@@ -164,18 +169,24 @@ const actions = {
   async processLinkedLibrary({ getters, dispatch }, library_info) {
     try {
       const [library_name, api_key] = library_info;
-      console.log(library_name, api_key);
       const payload = {
         session_id: getters.getSessionID,
         library_type: library_name,
         library_api_key: api_key,
       };
 
+      dispatch("updateLibraryProcess", "PROCESSING");
       const response = await axios.post(`${API_URL}/register-library`, payload);
-      console.log(response);
+      console.log(response.data);
+      dispatch("updateLibraryProcess", "AVAILABLE");
     } catch (err) {
+      dispatch("updateLibraryProcess", "AVAILABLE");
       console.error(err);
     }
+  },
+
+  updateLibraryProcess({ commit }, state) {
+    commit("setLibraryProcess", state);
   },
 };
 
@@ -210,6 +221,10 @@ const mutations = {
 
   setVideoLink(store, status) {
     store.videoLink = status;
+  },
+
+  setLibraryProcess(store, status) {
+    store.libraryProcess = status;
   },
 
   resetLibraryState(state) {

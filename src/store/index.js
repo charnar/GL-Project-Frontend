@@ -46,8 +46,8 @@ export default createStore({
       state.modalMessage = message;
     },
 
-    setAuthenticate(state) {
-      state.isAuthenticated = true;
+    setAuthenticate(state, status) {
+      state.isAuthenticated = status;
     },
 
     setSessionID(state, sessionID) {

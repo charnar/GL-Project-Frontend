@@ -6,6 +6,8 @@
       <component
         v-for="component in this.unlinkedServices"
         v-bind:is="component"
+        :disableFlag="this.processingLibrary"
+        @click="handleClick"
       ></component>
     </div>
 
@@ -49,11 +51,24 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["getSessionID"]),
+    ...mapGetters(["getSessionID", "getLibraryProcess"]),
+
+    processingLibrary() {
+      return this.getLibraryProcess !== "AVAILABLE";
+    },
   },
 
   methods: {
-    ...mapActions(["checkSessionStatus"]),
+    ...mapActions(["checkSessionStatus", "updateModalMessage"]),
+
+    handleClick(e) {
+      console.log("CLiked!");
+      if (this.processingLibrary) {
+        this.updateModalMessage([
+          "Please wait until your library has been fully processed",
+        ]);
+      }
+    },
   },
 
   async mounted() {
@@ -68,8 +83,6 @@ export default {
           ? this.linkedServices.push(service.component_name)
           : this.unlinkedServices.push(service.component_name);
       });
-
-      console.log(this.linkedServices, this.unlinkedServices);
     } catch (err) {
       console.error(err);
     }

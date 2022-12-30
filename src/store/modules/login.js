@@ -36,7 +36,7 @@ const actions = {
 
       if (status === "SUCCESS") {
         dispatch("updateModalMessage", ["Logged in successfully!", true]);
-        commit("setAuthenticate");
+        commit("setAuthenticate", true);
         commit("setSessionID", session_id);
         commit("setUsername", username);
         router.push("/");

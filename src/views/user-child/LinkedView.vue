@@ -24,7 +24,6 @@ export default {
     const libraryname = this.$route.params.libraryname.toUpperCase();
     let linkedAccountID;
     if (libraryname === "STEAM") {
-      console.log("Steam library cumming");
       linkedAccountID = this.$route.query["openid.identity"].slice(37);
     }
 
