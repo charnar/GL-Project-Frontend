@@ -5,7 +5,8 @@ import registration from "./modules/registration.js";
 import login from "./modules/login.js";
 import user from "./modules/user.js";
 import library from "./modules/library";
-import { TIMEOUT_MODAL_MESSAGE } from "@/configs.js";
+import { TIMEOUT_MODAL_MESSAGE, API_URL } from "@/configs.js";
+import axios from "axios";
 
 const defaultIndexState = () => {
   return {
@@ -64,8 +65,13 @@ export default createStore({
   },
   actions: {
     /** Logs out the user and resets to default state */
-    async logoutUser({ commit }) {
+    async logoutUser({ commit, getters }) {
       try {
+        const payload = {
+          session_id: getters.getSessionID,
+        };
+
+        const response = await axios.post(`${API_URL}/logout`, payload);
         await router.push("/login");
         commit("resetState");
         commit("resetLoginState");
