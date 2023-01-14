@@ -17,7 +17,7 @@ export default {
         this.handler && (await this.handler());
         this.toggleAnimation(e);
       } catch (err) {
-        console.error(err);
+        console.error("Could not refresh");
       }
     },
 

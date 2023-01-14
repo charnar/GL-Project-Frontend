@@ -28,7 +28,7 @@ export default {
     }
 
     this.processLinkedLibrary([libraryname, linkedAccountID]);
-    // console.log(payload);
+
     // Timeout not needed as we need all the time to process the things
     setTimeout(() => this.$router.push("/"), 5000);
   },

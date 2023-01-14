@@ -6,6 +6,7 @@
       <component
         v-for="component in this.unlinkedServices"
         v-bind:is="component"
+        v-bind:key="component.component_name"
         :disableFlag="this.processingLibrary"
         @click="handleClick"
       ></component>
@@ -15,6 +16,7 @@
     <div class="linked__container">
       <component
         v-for="component in this.linkedServices"
+        v-bind:key="component.component_name"
         v-bind:is="component"
         :disableFlag="true"
       ></component>
@@ -62,7 +64,6 @@ export default {
     ...mapActions(["checkSessionStatus", "updateModalMessage"]),
 
     handleClick(e) {
-      console.log("CLiked!");
       if (this.processingLibrary) {
         this.updateModalMessage([
           "Please wait until your library has been fully processed",

@@ -32,7 +32,6 @@ export default {
       await this.updateGames();
       this.loadingFlag = false;
     } catch (err) {
-      console.error(err);
       this.loadingFlag = false;
     }
   },

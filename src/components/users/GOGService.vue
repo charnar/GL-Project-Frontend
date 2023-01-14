@@ -15,13 +15,7 @@ export default {
   },
 
   methods: {
-    handleClick(e) {
-      this.GOGPopupWindow = parent.window.open(
-        "https://auth.gog.com/auth?client_id=46899977096215655&redirect_uri=https%3A%2F%2Fembed.gog.com%2Fon_login_success%3Fredirect_uri=http%3A%2F%2localhost%3A3000%2Flinkedorigin%3Dclient&response_type=code&layout=client2",
-        "_blank",
-        "popup"
-      );
-    },
+    handleClick(e) {},
   },
 };
 </script>
@@ -39,9 +33,6 @@ button {
   width: 100px;
   align-content: center;
   font-weight: 600;
-
-  &:hover {
-    cursor: pointer;
-  }
+  opacity: 0.4;
 }
 </style>

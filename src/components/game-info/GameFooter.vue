@@ -1,6 +1,6 @@
 <template>
   <div class="game__info__footer">
-    <div class="features__container">
+    <!-- <div class="features__container">
       <h2>Features</h2>
       <ul class="features__list">
         <li>
@@ -20,12 +20,12 @@
           experience.
         </li>
       </ul>
-    </div>
+    </div> -->
     <div class="details__container">
       <h2>Game Details</h2>
 
       <table class="details__table">
-        <tr class="detail__heading">
+        <!-- <tr class="detail__heading">
           <td class="detail__name">Genre</td>
           <td class="detail__info">Simulation - Role-playing - Managerial</td>
         </tr>
@@ -40,11 +40,13 @@
         <tr class="detail__heading">
           <td class="detail__name">Works on</td>
           <td class="detail__info">Simulation - Role-playing - Managerial</td>
-        </tr>
+        </tr> -->
 
         <tr class="detail__heading">
-          <td class="detail__name">Release date</td>
-          <td class="detail__info">{{ this.releaseDate }}</td>
+          <span>
+            <td class="detail__name">Release date</td>
+            <td class="detail__info">{{ this.releaseDate }}</td>
+          </span>
         </tr>
       </table>
     </div>
@@ -71,10 +73,6 @@ export default {
 
   .features__container {
     margin-right: 1rem;
-  }
-
-  .details__container {
-    margin-left: 1rem;
   }
 
   .features__list {

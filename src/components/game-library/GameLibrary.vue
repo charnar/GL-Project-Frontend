@@ -116,9 +116,7 @@ export default {
     async onRefreshClick() {
       try {
         await this.updateGames();
-      } catch (err) {
-        console.error(err);
-      }
+      } catch (err) {}
     },
   },
 };

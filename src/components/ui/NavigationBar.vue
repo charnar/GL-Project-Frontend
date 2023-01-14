@@ -12,9 +12,9 @@
           <router-link to="/">Home</router-link>
         </li>
 
-        <li>
+        <!-- <li>
           <router-link to="/about">About</router-link>
-        </li>
+        </li> -->
 
         <li>
           <router-link to="/user/accounts">Accounts</router-link>
@@ -65,10 +65,10 @@ export default {
 
 .profile__logo {
   background: color.$profile-icon-bg;
-  width: inherit;
-  height: inherit;
   border-radius: 100%;
   overflow: hidden;
+  height: inherit;
+  aspect-ratio: 1/1;
 
   img {
     width: 100%;

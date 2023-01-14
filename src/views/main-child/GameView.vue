@@ -4,7 +4,7 @@
     <div class="game__cover__background">
       <img
         v-if="this.gameInfo"
-        :src="this.gameInfo.banner_url"
+        :src="this.gameInfo.screenshots[0].screenshot_url"
         alt="Cover Background"
       />
     </div>
@@ -26,9 +26,9 @@
               <span class="game__hours">{{
                 this.gameInfo.total_play_time
               }}</span>
-              <span class="favorite__btn favorite__active">
+              <!-- <span class="favorite__btn favorite__active">
                 <font-awesome-icon icon="fa-solid fa-heart" />
-              </span>
+              </span> -->
             </h3>
           </div>
         </div>
@@ -105,7 +105,6 @@ export default {
         this.checkSessionStatus(status);
         this.gameInfo = gameInfo;
 
-        console.log(gameInfo);
         gameInfo.first_release_date = get_release_date(
           gameInfo.first_release_date
         );

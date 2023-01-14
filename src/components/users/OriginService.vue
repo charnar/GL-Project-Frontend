@@ -10,9 +10,7 @@ export default {
   props: ["disableFlag"],
 
   methods: {
-    handleClick(e) {
-      console.log("Origin Link comming soon...");
-    },
+    handleClick(e) {},
   },
 };
 </script>
@@ -30,9 +28,6 @@ button {
   width: 100px;
   align-content: center;
   font-weight: 600;
-
-  &:hover {
-    cursor: pointer;
-  }
+  opacity: 0.4;
 }
 </style>

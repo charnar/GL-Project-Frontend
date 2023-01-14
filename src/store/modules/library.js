@@ -177,11 +177,10 @@ const actions = {
 
       dispatch("updateLibraryProcess", "PROCESSING");
       const response = await axios.post(`${API_URL}/register-library`, payload);
-      console.log(response.data);
+
       dispatch("updateLibraryProcess", "AVAILABLE");
     } catch (err) {
       dispatch("updateLibraryProcess", "AVAILABLE");
-      console.error(err);
     }
   },
 

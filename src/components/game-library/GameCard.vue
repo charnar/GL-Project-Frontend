@@ -11,12 +11,12 @@
     <div class="game__info">
       <div class="game__heading">
         <h1>{{ gameInfo.game_name }}</h1>
-        <span class="favorite__btn">
+        <!-- <span class="favorite__btn">
           <font-awesome-icon
             :class="{ favorite__active: gameInfo.favorite }"
             icon="fa-solid fa-heart"
           />
-        </span>
+        </span> -->
       </div>
 
       <p>{{ gameInfo.summary }}</p>
