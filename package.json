@@ -14,6 +14,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.1",
     "axios": "^0.27.2",
     "core-js": "^3.8.3",
+    "dotenv": "^16.0.3",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vueperslides": "^3.5.1",

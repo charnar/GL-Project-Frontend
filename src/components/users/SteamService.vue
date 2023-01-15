@@ -16,19 +16,25 @@
       value="http://specs.openid.net/auth/2.0"
     />
     <input type="hidden" name="openid.mode" value="checkid_setup" />
-    <input type="hidden" name="openid.realm" value="http://localhost:3000/" />
+    <input type="hidden" name="openid.realm" :value="homeLink" />
     <input
       type="hidden"
       name="openid.return_to"
-      value="http://localhost:3000/linked/steam"
+      :value="`${homeLink}/linked/steam`"
     />
     <button type="submit" :disabled="this.disableFlag"></button>
   </form>
 </template>
 
 <script>
+import { HOME_LINK } from "@/configs";
 export default {
   name: "SteamButton",
+  data() {
+    return {
+      homeLink: HOME_LINK,
+    };
+  },
   props: ["disableFlag"],
 };
 </script>

@@ -9,9 +9,8 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 import LoadingSpinner from "@/components/ui/LoadingSpinner.vue";
-import library from "@/store/modules/library";
 
 export default {
   name: "LinkedView",
@@ -25,12 +24,10 @@ export default {
     let linkedAccountID;
     if (libraryname === "STEAM") {
       linkedAccountID = this.$route.query["openid.identity"].slice(37);
+      this.processLinkedLibrary([libraryname, linkedAccountID]);
+      // Timeout not needed as we need all the time to process the things
+      setTimeout(() => this.$router.push("/"), 5000);
     }
-
-    this.processLinkedLibrary([libraryname, linkedAccountID]);
-
-    // Timeout not needed as we need all the time to process the things
-    setTimeout(() => this.$router.push("/"), 5000);
   },
 };
 </script>

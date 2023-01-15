@@ -74,27 +74,9 @@ const actions = {
 
   async updateGames({ commit, dispatch, getters }) {
     try {
-      // 1. Fetch user's game library from backend
-      // let response;
       let responseNew;
       const libraryName = getters.getLibraryFilter;
 
-      // if (libraryName === "All") {
-      //   response = await axios.post(`${JSON_API_URL}/all-library-games`, {
-      //     session_id: getters.getSessionID,
-      //   });
-      // } else {
-      //   const gameLibraries = getters.getGameLibraries;
-      //   const { id: libraryID } = gameLibraries.find(
-      //     (lib) => lib.name === libraryName
-      //   );
-      //   response = await axiosPostRequest(`${JSON_API_URL}/library-games`, {
-      //     session_id: getters.getSessionID,
-      //     library_id: libraryID,
-      //   });
-      // }
-
-      // Real request to the backend, remove the top one when its fully finished
       responseNew = await axios.post(
         `${API_URL}/all-library-games/alphabetically`,
         {
@@ -102,10 +84,7 @@ const actions = {
         }
       );
 
-      // const { games } = response.data;
       const { status: sessionStatus, games } = responseNew.data;
-
-      // Check session response
       dispatch("checkSessionStatus", sessionStatus);
 
       if (libraryName === "All") {
@@ -180,6 +159,7 @@ const actions = {
 
       dispatch("updateLibraryProcess", "AVAILABLE");
     } catch (err) {
+      throw new Error("Something went wrong ");
       dispatch("updateLibraryProcess", "AVAILABLE");
     }
   },
