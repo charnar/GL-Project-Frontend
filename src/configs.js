@@ -4,7 +4,7 @@ export const DISPLAY_PAGES = 5;
 export const TIMEOUT_API_CALL = 60 * 1000; // in seconds
 export const TIMEOUT_SEARCH = 800;
 export const TIMEOUT_MODAL_MESSAGE = 3 * 1000; // in seconds
-export const HOME_LINK = process.env.VUP_APP_HOME_LINK;
+export const HOME_LINK = process.env.VUE_APP_HOME_LINK;
 export const ACCOUNT_SERVICES = [
   {
     name: "STEAM",

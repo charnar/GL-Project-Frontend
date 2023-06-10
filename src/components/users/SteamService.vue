@@ -20,7 +20,7 @@
     <input
       type="hidden"
       name="openid.return_to"
-      :value="`${homeLink}/linked/steam`"
+      :value="`${this.homeLink}/linked/steam`"
     />
     <button type="submit" :disabled="this.disableFlag"></button>
   </form>
