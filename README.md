@@ -4,7 +4,7 @@ Created with Vue.js 3 💚
 
 Deployed on [Vercel](https://gl-project.vercel.app) 🚀
 
-GL Project is a gaming library collection ppplication where you can view all of your games in one place (Only steam is supported). Just a fun little side project to get into web development. This repo is for the FE of GL Project, check out the [backend](https://github.com/conancom/GL-Project-Backend) as well!
+GL Project is a gaming library collection application where you can view all of your games in one place (Only steam is supported). Just a fun little side project to get into web development. This repo is for the FE of GL Project, check out the [backend](https://github.com/conancom/GL-Project-Backend) as well!
 
 ## Setup
 
